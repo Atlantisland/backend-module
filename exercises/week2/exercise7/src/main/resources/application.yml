@@ -1,0 +1,17 @@
+singapore:
+  buildings:
+    - name: Eliptic Appartments
+      built: 03-05-1993
+      historic: false
+    - name: Skyline Homes
+      built: 15-06-2010
+      historic: false
+    - name: Old Hill Street Police Station
+      built: 20-02-1934
+      historic: true
+    - name: New World Amusement Park
+      built: 01-08-1991
+      historic: false
+    - name: Pearl Coast Apparments
+      built: 30-10-2004
+      historic: false

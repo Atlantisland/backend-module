@@ -1,0 +1,23 @@
+secretagent:
+  handshakes:
+    - number: 2
+      move: thumb-touches-back
+    - number: 3
+      move: little-finger-grab
+    - number: 5
+      move: tickles-over-palm
+    - number: 6
+      move: bro-knock
+    - number: 9
+      move: thousand-knuckles
+    - number: 0
+      move: no-move
+    - number: 1
+      move: no-move
+    - number: 4
+      move: no-move
+    - number: 7
+      move: no-move
+    - number: 8
+      move: no-move
+

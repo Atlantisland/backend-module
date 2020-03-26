@@ -1,0 +1,27 @@
+server:
+  port: 8100
+education:
+  academies:
+    - name: everyone codes
+      location: Vienna
+    - name: everyone codes
+      location: Lower Austria
+    - name: everyone codes
+      location: Graz
+
+  events:
+    - name: Laser Tag
+      location: 9th district
+      students:
+        - name: Thomas
+          languages: English, German
+        - name: Luna
+          languages: English, Italian
+    - name: Virtual Reality Games
+      location: Home
+      students:
+        - name: Alice
+          languages: English, French
+        - name: Roberto
+          languages: English, Spanish
+

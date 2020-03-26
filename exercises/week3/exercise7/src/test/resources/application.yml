@@ -1,0 +1,8 @@
+skills:
+  developers:
+    - name: developer1
+      skills: skill1, skill2, skill3
+    - name: developer2
+      skills: skill1, skill3
+    - name: developer3
+      skills: skill4

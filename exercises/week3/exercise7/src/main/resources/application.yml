@@ -1,0 +1,12 @@
+skills:
+  developers:
+    - name: Seth
+      skills: Javascript, CSS, HTML
+    - name: Sarah
+      skills: Java, Spring-Boot
+    - name: Sonia
+      skills: Python, HTML, CSS
+    - name: Tom
+      skills: Kotlin, Python, Javascript
+
+

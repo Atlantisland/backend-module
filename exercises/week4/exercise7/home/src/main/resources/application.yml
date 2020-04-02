@@ -1,0 +1,4 @@
+server:
+  port: 9002
+dorothy:
+  url: http://localhost:9000/dorothy

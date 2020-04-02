@@ -1,0 +1,5 @@
+server:
+  port: 8501
+marathon:
+  webapp:
+    url: http://localhost:8500/runners

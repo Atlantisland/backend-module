@@ -1,0 +1,10 @@
+server:
+  port: 9002
+
+diagnosis:
+  - name: allergy
+    symptoms: sneezing, nasal congestion
+  - name: anemia
+    symptoms: fatigue, appear pale
+  - name: anxiety
+    symptoms: stress, irritability

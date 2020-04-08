@@ -1,0 +1,8 @@
+server:
+  port: 9000
+
+hotrightnow:
+  url: http://localhost:9002/movies
+
+tailoredRecommendations:
+  url: //localhost:9001/tailoredrecommendations

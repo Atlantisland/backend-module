@@ -1,0 +1,7 @@
+
+hotrightnow:
+  movies:
+   - title: "title1"
+     synopsis: "synopsis1"
+   - title: "title2"
+     synopsis: "synopsis2"

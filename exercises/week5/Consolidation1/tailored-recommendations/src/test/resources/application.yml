@@ -1,0 +1,10 @@
+recommendation:
+  tailoredRecommendations:
+    - userUuid: 123abc
+      movie:
+        title: title1
+        synopsis: synopsis1
+    - userUuid: 321cba
+      movie:
+        title: title2
+        synopsis: synopsis2

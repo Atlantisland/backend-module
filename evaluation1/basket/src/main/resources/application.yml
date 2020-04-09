@@ -1,0 +1,11 @@
+server:
+  port: 9000
+
+deliverCost:
+  standard: 2.50
+  noaccount: 2.50
+  premium: 0.0
+
+users:
+  url:
+    userUrl: http://localhost:9001/users

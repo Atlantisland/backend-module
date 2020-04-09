@@ -1,0 +1,17 @@
+server:
+  port: 9001
+
+user-account-store:
+  users:
+    - name: Lisa
+      email: "lisa@email.com"
+      accountType: standard
+    - name: Rodolfo
+      email: "rodolfo@email.com"
+      accountType: standard
+    - name: Samuel
+      email: "samuel@email.com"
+      accountType: premium
+    - name: Rose
+      email: "rose@email.com"
+      accountType: premium

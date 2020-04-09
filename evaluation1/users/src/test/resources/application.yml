@@ -1,0 +1,5 @@
+user-account-store:
+  users:
+    - name: user1
+      email: email1
+      accountType: type1

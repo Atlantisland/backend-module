@@ -1,5 +1,5 @@
 cinema:
-  special offer:
+  specialoffer:
     defaultmessage: Hello --name--!
     templates:
       - name: male

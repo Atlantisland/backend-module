@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/dorothy")
 public class DorothyEndpoint {
+
     private final Dorothy dorothy;
 
     public DorothyEndpoint(Dorothy dorothy) {
@@ -16,6 +17,6 @@ public class DorothyEndpoint {
 
     @GetMapping
     String get() {
-        return dorothy.findWayHome();
+        return dorothy.findHome();
     }
 }

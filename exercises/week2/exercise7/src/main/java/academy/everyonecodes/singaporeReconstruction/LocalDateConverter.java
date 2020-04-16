@@ -11,9 +11,10 @@ import java.time.format.DateTimeFormatter;
 @ConfigurationPropertiesBinding
 public class LocalDateConverter implements Converter<String, LocalDate> {
 
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
     @Override
     public LocalDate convert(String source) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return LocalDate.parse(source, formatter);
     }
 }

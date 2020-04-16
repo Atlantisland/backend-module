@@ -6,8 +6,8 @@ import java.util.Set;
 
 @Service
 public class CreditCards {
-    private Set<Issuer> issuers;
-    private Luhn luhn;
+    private final Set<Issuer> issuers;
+    private final Luhn luhn;
 
     public CreditCards(Set<Issuer> issuers, Luhn luhn) {
         this.issuers = issuers;

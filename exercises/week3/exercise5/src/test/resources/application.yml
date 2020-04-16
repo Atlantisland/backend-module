@@ -1,8 +1,8 @@
 music:
   songs:
-    - name: song1
-      genre: genre1
-    - name: song2
-      genre: genre1
-    - name: song3
-      genre: genre2
+    - name: Song1
+      genre: Genre1
+    - name: Song2
+      genre: Genre2
+    - name: Song3
+      genre: Genre2

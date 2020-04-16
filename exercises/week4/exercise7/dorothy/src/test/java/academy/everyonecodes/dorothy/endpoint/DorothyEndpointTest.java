@@ -9,19 +9,29 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class DorothyEndpointTest {
+
     @Autowired
     TestRestTemplate restTemplate;
 
     @MockBean
     Dorothy dorothy;
 
+    String url = "/dorothy";
+
     @Test
     void get() {
-        String url = "/dorothy";
-        restTemplate.getForObject(url, String.class);
-        Mockito.verify(dorothy).findWayHome();
+        String expected = "message";
+        when(dorothy.findHome())
+                .thenReturn(expected);
+
+        String response = restTemplate.getForObject(url, String.class);
+
+        assertEquals(expected, response);
+        verify(dorothy).findHome();
     }
 }

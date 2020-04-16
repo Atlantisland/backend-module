@@ -15,8 +15,7 @@ public class Admission {
     }
 
     public Patient admit(Patient patient) {
-        String uuid = UUID.randomUUID().toString();
-        patient.setUuid(uuid);
-        return uuidProvider.provideUUID(patient);
+        uuidProvider.provideUUID(patient);
+        return patient;
     }
 }

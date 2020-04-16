@@ -1,4 +1,4 @@
-package academy.everyonecodes.communication.client;
+package academy.everyonecodes.runner.client;
 
 import academy.everyonecodes.domain.Movie;
 import org.junit.jupiter.api.Test;

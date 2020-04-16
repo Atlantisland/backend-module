@@ -1,34 +1,25 @@
 package academy.everyonecodes.mysteriousCalculator;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 class MysteriousNumberFormatterTest {
 
-    @Autowired
-    MysteriousNumberFormatter formatter;
+    MysteriousNumberFormatter formatter = new MysteriousNumberFormatter();
 
-    @Test
-    void formatWith0() {
-        String result = formatter.format(0);
+    @ParameterizedTest
+    @CsvSource({
+            "The mysterious number is 0, 0",
+            "The mysterious number is 1, 1",
+            "The mysterious number is -1, -1",
+    })
+    void format(String expected, int number) {
+        String result = formatter.format(number);
 
-        String expected = "The mysterious number is 0";
-        Assertions.assertEquals(expected, result);
-
+        assertEquals(expected, result);
     }
-
-@Test
-    void formatWith5() {
-        String result = formatter.format(5);
-
-        String expected = "The mysterious number is 5";
-        Assertions.assertEquals(expected, result);
-
-    }
-
 }
+
+

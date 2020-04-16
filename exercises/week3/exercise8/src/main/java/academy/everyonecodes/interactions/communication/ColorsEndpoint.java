@@ -18,11 +18,12 @@ public class ColorsEndpoint {
 
     @GetMapping("/{name}")
     String getColorName(@PathVariable String name){
-        if(colors.contains(name)){
-            return name;
-        }
-        return "The color is not available in the app.";
+        return colors.stream()
+                .filter(color -> color.equalsIgnoreCase(name))
+                .findFirst()
+                .orElse("The color is not available in the app");
     }
+
 
     @PostMapping
     String post(@RequestBody String name){
@@ -38,9 +39,15 @@ public class ColorsEndpoint {
         return received;
     }
 
+    @DeleteMapping
+    void delete() {
+        colors.clear();
+    }
+
     @DeleteMapping("/{name}")
-    void deleteAll(@PathVariable String name) {
+    void delete(@PathVariable String name) {
         colors.remove(name);
     }
+
 }
 

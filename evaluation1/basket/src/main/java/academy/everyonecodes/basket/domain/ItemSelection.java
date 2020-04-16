@@ -8,7 +8,7 @@ public class ItemSelection {
     private String itemName;
     private double itemPrice;
 
-    public ItemSelection() {
+    ItemSelection() {
     }
 
     public ItemSelection(String userEmail, String itemName, double itemPrice) {

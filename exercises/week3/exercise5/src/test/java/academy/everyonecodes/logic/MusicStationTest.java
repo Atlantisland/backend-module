@@ -20,15 +20,21 @@ class MusicStationTest {
 
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of(List.of(new Song("song1", "genre1"), new Song("song2", "genre1")), "genre1"),
-                Arguments.of(List.of(new Song("song3", "genre2")), "genre2"),
-                Arguments.of(List.of(), " "));
+                Arguments.of(List.of(), null),
+                Arguments.of(List.of(), ""),
+                Arguments.of(List.of(new Song("Song1", "Genre1")), "Genre1"),
+                Arguments.of(List.of(new Song("Song1", "Genre1")), "genre1"),
+                Arguments.of(
+                        List.of(new Song("Song2", "Genre2"),
+                                new Song("Song3", "Genre2")),
+                        "Genre2")
+        );
     }
 
     @ParameterizedTest
     @MethodSource("parameters")
-    void findBy(List<Song> expected, String genre) {
-        List<Song> result = musicStation.findBy(genre);
+    void find(List<Song> expected, String keyword) {
+        List<Song> result = musicStation.findBy(keyword);
 
         assertEquals(expected, result);
     }

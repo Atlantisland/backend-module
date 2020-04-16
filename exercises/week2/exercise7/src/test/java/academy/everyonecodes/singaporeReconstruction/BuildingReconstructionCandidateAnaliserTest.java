@@ -16,12 +16,17 @@ class BuildingReconstructionCandidateAnaliserTest {
 
     @Test
     void findCandidates() {
-        Building building1 = new Building("building1", LocalDate.of(1800,1, 1), false);
-        Building building2 = new Building("building3", LocalDate.of(1800, 1, 1), true);
-        List<Building> buildings = List.of(building1, building2);
-        List<Building> expected = List.of(building1);
-        analiser.setBuildings(buildings);
         List<Building> result = analiser.findCandidates();
+
+        List<Building> expected = getExpectedBuildings();
         assertEquals(expected, result);
+    }
+
+    private List<Building> getExpectedBuildings() {
+        return List.of(
+                new Building("Eliptic Appartments", LocalDate.of(1993, 5, 3), false),
+                new Building("New World Amusement Park", LocalDate.of(1991, 8, 1), false)
+        );
+
     }
 }

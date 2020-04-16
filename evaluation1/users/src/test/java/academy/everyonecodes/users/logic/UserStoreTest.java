@@ -2,34 +2,40 @@ package academy.everyonecodes.users.logic;
 
 import academy.everyonecodes.users.domain.User;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.of;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class UserStoreTest {
 
     @Autowired
-    UserStore store;
+    UserStore userStore;
 
-    @Test
-    void getNoUserByEmail() {
-        User user = new User("user2", "email2", "");
-        Optional<User> oResult = store.getUserByEmail("email2");
-        Optional<User> oExpected = Optional.empty();
-        Assertions.assertEquals(oExpected, oResult);
+    static Stream<Arguments> parameters() {
+        return Stream.of(
+                of(Optional.empty(), ""),
+                of(Optional.empty(), "test"),
+                of(Optional.of(new User("test", "test@test.com", "test")), "test@test.com")
+        );
     }
 
-    @Test
-    void getUserByEmail() {
-        User user = new User("user1", "email1", "type1");
-        Optional<User> oResult = store.getUserByEmail("email1");
-        Optional<User> oExpected = Optional.of(user);
-        Assertions.assertEquals(oExpected, oResult);
+    @ParameterizedTest
+    @MethodSource("parameters")
+    void findByEmail(Optional<User> oExpected, String email) {
+        Optional<User> oResult = userStore.getUserByEmail(email);
+
+        assertEquals(oExpected, oResult);
     }
 }
+
 
 

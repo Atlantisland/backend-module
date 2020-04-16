@@ -20,11 +20,11 @@ public class Move {
         return defeats;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public void setDefeats(String defeats) {
+    void setDefeats(String defeats) {
         this.defeats = defeats;
     }
 }

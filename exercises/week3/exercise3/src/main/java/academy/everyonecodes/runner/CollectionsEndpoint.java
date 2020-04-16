@@ -1,4 +1,4 @@
-package academy.everyonecodes.communication;
+package academy.everyonecodes.runner;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

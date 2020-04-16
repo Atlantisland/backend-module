@@ -24,19 +24,28 @@ class MarathonServiceTest {
         service.add(runner1);
         service.add(runner2);
         service.add(runner3);
-        Optional<Runner> result = service.findWinner();
-        assertEquals(Optional.of(runner3), result);
+        Optional<Runner> oResult = service.findWinner();
+
+        Optional<Runner> oExpected = Optional.of(runner3);
+        assertEquals(oExpected, oResult);
     }
 
     @Test
     void findNoWinner(){
-        Optional<Runner> result = service.findWinner();
-        assertEquals(Optional.empty(), result);
+        Optional<Runner> oResult = service.findWinner();
+
+        Optional<Runner> oExpected = Optional.empty();
+        assertEquals(oExpected, oResult);
     }
 
     @Test
-    void getRunners() {
-        service.add(runner1);
-        assertEquals(Set.of(runner1), service.getRunners());
+    void add() {
+        assertTrue(service.getRunners().isEmpty());
+
+        Runner runner = new Runner("test", Duration.ofHours(1));
+        service.add(runner);
+
+        int expected = 1;
+        assertEquals(expected, service.getRunners().size());
     }
 }

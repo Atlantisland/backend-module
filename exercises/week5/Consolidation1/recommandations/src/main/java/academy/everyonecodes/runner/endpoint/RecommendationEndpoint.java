@@ -1,4 +1,4 @@
-package academy.everyonecodes.communication.endpoint;
+package academy.everyonecodes.runner.endpoint;
 
 import academy.everyonecodes.domain.Movie;
 import academy.everyonecodes.logic.RecommendationService;

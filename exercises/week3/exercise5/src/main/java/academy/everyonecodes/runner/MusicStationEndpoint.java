@@ -1,4 +1,4 @@
-package academy.everyonecodes.communication;
+package academy.everyonecodes.runner;
 
 import academy.everyonecodes.logic.MusicStation;
 import academy.everyonecodes.domain.Song;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/developers")
 public class DeveloperEndpoint {
 
     private final DeveloperService service;
@@ -20,12 +20,12 @@ public class DeveloperEndpoint {
         this.service = service;
     }
 
-    @GetMapping("/developers")
+    @GetMapping
     List<Developer> getDeveloper(){
-        return service.finaAll();
+        return service.findAll();
     }
 
-    @GetMapping("/developers/skills/{skills}")
+    @GetMapping("/skills/{skills}")
     List<Developer> getSkilledDeveloper(@PathVariable String skills){
         return service.findBy(skills);
     }

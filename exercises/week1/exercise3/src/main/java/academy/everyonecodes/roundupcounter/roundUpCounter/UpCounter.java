@@ -15,8 +15,10 @@ public class UpCounter {
 
     public long count(List<Double> numbers) {
         return numbers.stream()
-                .filter(number -> upDownIndicator.indicate(number).equals("UP"))
+                .map(upDownIndicator::indicate)
+                .filter(indication -> indication.equals("UP"))
                 .count();
+
     }
 
 }

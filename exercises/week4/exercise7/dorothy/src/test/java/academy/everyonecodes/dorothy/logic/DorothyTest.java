@@ -9,9 +9,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+
 class DorothyTest {
+
     @Autowired
     Dorothy dorothy;
 
@@ -19,14 +23,22 @@ class DorothyTest {
     RestTemplate restTemplate;
 
     @Value("${wizard.url}")
-    String url;
+    String wizardUrl;
 
     @Test
-    void findWayHome() {
+    void findHome() {
         String homeUrl = "homeUrl";
-        Mockito.when(restTemplate.getForObject(url, String.class)).thenReturn(homeUrl);
-        dorothy.findWayHome();
-        Mockito.verify(restTemplate).getForObject(url, String.class);
-        Mockito.verify(restTemplate).getForObject(homeUrl, String.class);
+        when(restTemplate.getForObject(wizardUrl, String.class))
+                .thenReturn(homeUrl);
+        String home = "Home";
+        when(restTemplate.getForObject(homeUrl, String.class))
+                .thenReturn(home);
+
+        String result = dorothy.findHome();
+
+        String expected = "My home is " + home;
+        assertEquals(expected, result);
+        verify(restTemplate).getForObject(wizardUrl, String.class);
+        verify(restTemplate).getForObject(homeUrl, String.class);
     }
 }

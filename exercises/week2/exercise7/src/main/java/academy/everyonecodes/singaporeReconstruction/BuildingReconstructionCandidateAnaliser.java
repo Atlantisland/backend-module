@@ -1,4 +1,5 @@
 package academy.everyonecodes.singaporeReconstruction;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
@@ -10,15 +11,20 @@ import java.util.stream.Collectors;
 @ConfigurationProperties("singapore")
 public class BuildingReconstructionCandidateAnaliser {
     private List<Building> buildings;
-    private final long yearThreshold = 20;
+    private int yearThreshold;
 
     void setBuildings(List<Building> buildings) {
         this.buildings = buildings;
     }
 
+    void setYearThreshold(int yearThreshold) {
+        this.yearThreshold = yearThreshold;
+    }
+
     public List<Building> findCandidates() {
         return buildings.stream()
-                .filter(building -> building.getBuilt().isBefore(LocalDate.now().minusYears(yearThreshold)) && !building.isHistoric())
+                .filter(building -> building.getBuilt().isBefore(LocalDate.now().minusYears(yearThreshold)))
+                .filter(building -> !building.isHistoric())
                 .collect(Collectors.toList());
     }
 }

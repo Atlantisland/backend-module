@@ -4,8 +4,8 @@ import java.util.List;
 
 public abstract class Taxer {
 
-    private List<String> names;
-    private double tax;
+    private final List<String> names;
+    private final double tax;
 
     public Taxer(List<String> names, double tax) {
         this.names = names;

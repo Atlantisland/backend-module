@@ -16,9 +16,13 @@ class RounderTest {
 
     @ParameterizedTest
     @CsvSource({
-            "4.0, 3.2",
-            "-3.0, -3.2",
-            "1.0, 0.55"
+            "-0, -0.9",
+            "-0, -0.5",
+            "-0, -0.1",
+            "1, 0.1",
+            "1, 0.1",
+            "1, 0.5",
+            "1, 0.9"
     })
     void roundUp(double expected, double input) {
         double result = rounder.roundUp(input);
@@ -29,9 +33,13 @@ class RounderTest {
 
     @ParameterizedTest
     @CsvSource({
-            "3.0, 3.2",
-            "-4.0, -3.5",
-            "0.0, 0.35"
+            "-1, -0.9",
+            "-1, -0.5",
+            "-1, -0.1",
+            "0, 0.0",
+            "0, 0.1",
+            "0, 0.5",
+            "0, 0.9"
     })
     void roundDown(double expected, double input) {
         double result = rounder.roundDown(input);

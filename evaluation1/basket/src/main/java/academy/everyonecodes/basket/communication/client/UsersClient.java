@@ -13,7 +13,7 @@ public class UsersClient {
     private final RestTemplate restTemplate;
     private final String url;
 
-    public UsersClient(RestTemplate restTemplate, @Value("${users.url.userUrl}")  String url) {
+    public UsersClient(RestTemplate restTemplate, @Value("${users.url}")  String url) {
         this.restTemplate = restTemplate;
         this.url= url;
     }

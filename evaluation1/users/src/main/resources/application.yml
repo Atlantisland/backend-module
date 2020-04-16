@@ -4,14 +4,14 @@ server:
 user-account-store:
   users:
     - name: Lisa
-      email: "lisa@email.com"
+      email: lisa@email.com
       accountType: standard
     - name: Rodolfo
-      email: "rodolfo@email.com"
+      email: rodolfo@email.com
       accountType: standard
     - name: Samuel
-      email: "samuel@email.com"
+      email: samuel@email.com
       accountType: premium
     - name: Rose
-      email: "rose@email.com"
+      email: rose@email.com
       accountType: premium

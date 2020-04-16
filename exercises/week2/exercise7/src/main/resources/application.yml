@@ -1,4 +1,5 @@
 singapore:
+  yearThreshold: 20
   buildings:
     - name: Eliptic Appartments
       built: 03-05-1993

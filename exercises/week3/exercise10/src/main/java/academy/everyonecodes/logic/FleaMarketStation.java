@@ -4,21 +4,22 @@ import academy.everyonecodes.domain.Item;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@ConfigurationProperties("items")
 public class FleaMarketStation {
 
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
 
-    public FleaMarketStation(List<Item> items) {
-        this.items = items;
+    public List<Item> findAll() {
+        return items;
     }
 
-    public List<Item> finaALL() {
-        return items;
+    public Item add(Item item) {
+        items.add(item);
+        return item;
     }
 
     public List<Item> findBy(String name) {

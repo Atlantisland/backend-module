@@ -1,13 +1,13 @@
 package academy.everyonecodes.secretAgentHandshakes;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,24 +17,19 @@ class HandshakeNumberToMoveTranslatorTest {
     @Autowired
     HandshakeNumberToMoveTranslator translator;
 
-    @ParameterizedTest
-    @CsvSource({
-            "thumb, 2",
-            "little, 3",
-            "tickles, 5",
-            "bro, 6",
-            "thousand, 9"
-    })
-
-    void translate(Optional<String> expected, int input) {
-        Optional<String> result = translator.translate(input);
-
-        Assertions.assertEquals(expected, result);
+    static Stream<Arguments> parameters() {
+        return Stream.of(
+                Arguments.of(Optional.empty(), 0),
+                Arguments.of(Optional.of("text 1"), 1),
+                Arguments.of(Optional.of("text 2"), 2)
+        );
     }
 
-   @Test
-    void testNoMove() {
-       Optional<String> oResult = translator.translate(0);
-        assertTrue(oResult.isEmpty());
+    @ParameterizedTest
+    @MethodSource("parameters")
+    void translate(Optional<String> expected, int number) {
+        Optional<String> result = translator.translate(number);
+
+        assertEquals(expected, result);
     }
 }

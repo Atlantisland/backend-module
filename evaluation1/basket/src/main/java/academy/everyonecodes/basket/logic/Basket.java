@@ -6,24 +6,24 @@ import academy.everyonecodes.basket.domain.Summary;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
-//@Service
+
 public class Basket {
 
-    private SummaryCalculator calculator;
+    private final SummaryCalculator summaryCalculator;
+    private final List<Summary> summaries;
 
-    private final List<ItemSelection> selections;
-
-    public Basket(List<ItemSelection> selections) {
-        this.selections = selections;
+    public Basket(SummaryCalculator summaryCalculator, List<Summary> summaries) {
+        this.summaryCalculator = summaryCalculator;
+        this.summaries = summaries;
     }
 
-    public void add(ItemSelection selection) {
-        selections.add(selection);
+    public void process(ItemSelection itemSelection) {
+        Summary summary = summaryCalculator.calculate(itemSelection);
+        summaries.add(summary);
     }
 
-    public List<Summary> get(List<ItemSelection> selections) {
-        return selections.stream()
-                .map(calculator::calculateSummary)
-                .collect(toList());
+    public List<Summary> getSummaries() {
+        return summaries;
     }
 }
+

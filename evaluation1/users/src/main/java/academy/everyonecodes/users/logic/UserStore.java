@@ -13,7 +13,7 @@ public class UserStore {
 
     private Set<User> users;
 
-    public void setUsers(Set<User> users) {
+    void setUsers(Set<User> users) {
         this.users = users;
     }
 

@@ -26,7 +26,6 @@ class UserEndpointTest {
     @Test
     void get(){
         User user1 = new User("user1", "email1", "type1");
-        //Mockito.when(store.getUserByEmail("email1")).thenReturn(user1);
         testRestTemplate.getForObject(url + "/email1", User.class);
 
         verify(store).getUserByEmail("email1");

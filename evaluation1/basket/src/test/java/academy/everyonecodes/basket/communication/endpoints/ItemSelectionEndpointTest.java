@@ -1,34 +1,32 @@
 package academy.everyonecodes.basket.communication.endpoints;
 
 import academy.everyonecodes.basket.domain.ItemSelection;
-import academy.everyonecodes.basket.logic.SummaryCalculator;
+import academy.everyonecodes.basket.logic.Basket;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ItemSelectionEndpointTest {
 
     @Autowired
-    TestRestTemplate testRestTemplate;
+    TestRestTemplate restTemplate;
 
     @MockBean
-    SummaryCalculator calculator;
+    Basket basket;
 
     String url = "/itemselections";
 
     @Test
-    void post(){
-        ItemSelection selection = new ItemSelection("userEmail", "itemName", 3.2);
+    void post() {
+        ItemSelection itemSelection = new ItemSelection("test", "test", 1.0);
 
-        testRestTemplate.postForObject(url, selection, ItemSelection.class);
+        restTemplate.postForObject(url, itemSelection, ItemSelection.class);
 
-        verify(calculator).calculateSummary(selection);
+        verify(basket).process(itemSelection);
     }
-
 }

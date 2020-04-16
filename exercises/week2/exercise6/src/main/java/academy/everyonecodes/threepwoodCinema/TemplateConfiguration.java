@@ -12,7 +12,7 @@ public class TemplateConfiguration {
     private List<Template> templates;
 
 
-    public void setTemplates(List<Template> templates) {
+    void setTemplates(List<Template> templates) {
         this.templates = templates;
     }
 

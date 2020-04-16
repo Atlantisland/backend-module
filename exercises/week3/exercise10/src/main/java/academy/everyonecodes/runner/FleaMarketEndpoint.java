@@ -1,4 +1,4 @@
-package academy.everyonecodes.communication;
+package academy.everyonecodes.runner;
 
 import academy.everyonecodes.domain.Item;
 import academy.everyonecodes.logic.FleaMarketStation;

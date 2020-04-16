@@ -1,7 +1,6 @@
 package academy.everyonecodes.hotRightNow.logic;
 
 import academy.everyonecodes.hotRightNow.domain.Movie;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 

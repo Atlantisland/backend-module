@@ -1,35 +1,34 @@
 package academy.everyonecodes.drhouseAdmission.communication;
 
-import academy.everyonecodes.drhouseAdmission.domain.Patient;
+
 import academy.everyonecodes.drhouseAdmission.logic.UUIDProvider;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/uuids")
-public class UuidProviderEndpoint {
+public class UuidCacheEndpoint {
 
-    private final UUIDProvider provider;
+    private final UUIDProvider uuidProvider;
 
-    public UuidProviderEndpoint(UUIDProvider provider) {
-        this.provider = provider;
+    public UuidCacheEndpoint(UUIDProvider uuidProvider) {
+        this.uuidProvider = uuidProvider;
     }
 
     @GetMapping
-    Set<Patient> getCachedPatients(){
-        return provider.getCacheSnapshot();
+    Map<String, String> getAll() {
+        return uuidProvider.getCacheSnapshot();
     }
 
     @GetMapping("/{patientName}")
-    String getCachedPatientUUID(@PathVariable String patientName){
-        return ;
-
+    String getOne(@PathVariable String patientName) {
+        return uuidProvider.findUUID(patientName)
+                .orElse(null);
     }
-// I need to stop here and to commit
-
-
 }
+

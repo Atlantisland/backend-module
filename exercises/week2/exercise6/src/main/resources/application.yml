@@ -1,5 +1,5 @@
 cinema:
-  special offer:
+  specialoffer:
     defaultmessage: Hello --name--! How about a Friday night movie? This week with a 20% discount!
     templates:
       - name: male

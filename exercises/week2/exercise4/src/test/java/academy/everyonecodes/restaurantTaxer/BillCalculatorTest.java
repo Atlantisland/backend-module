@@ -1,6 +1,5 @@
 package academy.everyonecodes.restaurantTaxer;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,24 +9,35 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 class BillCalculatorTest {
 
     @Autowired
-    BillCalculator billCalculator;
+    BillCalculator calculator;
 
-    static Stream<Arguments> parameters(){
+    static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of(19.6, List.of(new RestaurantDish("potato soup", 3.5), new RestaurantDish("caesar salad", 2.8), new RestaurantDish("tiramisu", 6.0), new RestaurantDish("soda", 2.8))),
-                Arguments.of(17.3, List.of(new RestaurantDish("fish", 10.2), new RestaurantDish("caesar salad", 2.8), new RestaurantDish("orange juice", 2.0))),
-                Arguments.of(14.3, List.of(new RestaurantDish("fish", 10.5), new RestaurantDish("beer", 3.8)))
+                Arguments.of(0.0, List.of()),
+                Arguments.of(1.0, List.of(new RestaurantDish("test", 1.0))),
+                Arguments.of(2.1, List.of(new RestaurantDish("tiramisu", 1.0))),
+                Arguments.of(2.2, List.of(new RestaurantDish("milkshake", 1.0))),
+                Arguments.of(4.300000000000001, List.of(
+                        new RestaurantDish("tiramisu", 1.0),
+                        new RestaurantDish("milkshake", 1.0))),
+                Arguments.of(5.300000000000001, List.of(
+                        new RestaurantDish("tiramisu", 1.0),
+                        new RestaurantDish("milkshake", 1.0),
+                        new RestaurantDish("test", 1.0)))
         );
     }
+
     @ParameterizedTest
     @MethodSource("parameters")
-    void calculate(double expected, List<RestaurantDish> input){
-        double result = billCalculator.calculate(input);
+    void calculate(double expected, List<RestaurantDish> dishes) {
+        double result = calculator.calculate(dishes);
 
-        Assertions.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 }

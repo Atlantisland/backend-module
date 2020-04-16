@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Computer implements Player {
 
-    private Random random = new Random();
+    private final Random random = new Random();
     private final List<Move> moves;
 
     public Computer(List<Move> moves) {

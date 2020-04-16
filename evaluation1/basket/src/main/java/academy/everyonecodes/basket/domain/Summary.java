@@ -10,7 +10,7 @@ public class Summary {
     private double deliveryCost;
     private double totalPrice;
 
-    public Summary() {
+    Summary() {
     }
 
     public Summary(String userEmail, String itemName, double itemPrice, double deliveryCost, double totalPrice) {
@@ -49,7 +49,7 @@ public class Summary {
         return deliveryCost;
     }
 
-    void setDeliveryCost(double deliveryCost) {
+    public void setDeliveryCost(double deliveryCost) {
         this.deliveryCost = deliveryCost;
     }
 
@@ -57,7 +57,7 @@ public class Summary {
         return totalPrice;
     }
 
-    void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 

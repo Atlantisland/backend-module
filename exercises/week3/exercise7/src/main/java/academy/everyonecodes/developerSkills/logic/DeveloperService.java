@@ -17,7 +17,7 @@ public class DeveloperService {
         this.developers = developers;
     }
 
-    public List<Developer> finaAll() {
+    public List<Developer> findAll() {
         return developers;
     }
 

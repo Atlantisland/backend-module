@@ -20,14 +20,17 @@ class UpCounterTest {
         return Stream.of(
                 Arguments.of(3, List.of(3.5, 4.9, 2.0, 2.8)),
                 Arguments.of(1, List.of(3.0, 4.3, -2.0, -2.3)),
-                Arguments.of(0, List.of(3.0, 4.3, -2.0, -2.8))
+                Arguments.of(0, List.of(3.0, 4.3, -2.0, -2.8)),
+                Arguments.of(0, List.of()),
+                Arguments.of(0, List.of(0.0)),
+                Arguments.of(1, List.of(0.6))
         );
     }
 
     @ParameterizedTest
     @MethodSource("parameters")
     void count(long expected, List<Double> numbers) {
-        double result = upCounter.count(numbers);
+        long result = upCounter.count(numbers);
 
         Assertions.assertEquals(expected, result);
 

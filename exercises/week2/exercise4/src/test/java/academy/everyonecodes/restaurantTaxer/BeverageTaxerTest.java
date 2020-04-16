@@ -1,49 +1,43 @@
 package academy.everyonecodes.restaurantTaxer;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.stream.Stream;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class BeverageTaxerTest {
+
     @Autowired
-    BeverageTaxer beverageTaxer;
+    BeverageTaxer taxer;
 
-    static Stream<Arguments> parameters() {
-        return Stream.of(
-                Arguments.of(true, new RestaurantDish("soda", 3.8)),
-                Arguments.of(true, new RestaurantDish("orange juice", 5.2)),
-                Arguments.of(true, new RestaurantDish("milkshake", 6.5)),
-                Arguments.of(false, new RestaurantDish("wine", 10.5))
-        );
+    @ParameterizedTest
+    @CsvSource({
+            "false, ''",
+            "false, wrong-dish",
+            "true, milkshake",
+    })
+    void matches(boolean expected, String name) {
+        RestaurantDish dish = new RestaurantDish(name, 1.0);
+
+        boolean result = taxer.matches(dish);
+
+        assertEquals(expected, result);
     }
 
     @ParameterizedTest
-    @MethodSource("parameters")
-    void matches(boolean expected, RestaurantDish input) {
-        boolean result = beverageTaxer.matches(input);
+    @CsvSource({
+            "1.2, 0.0",
+            "2.2, 1.0",
+            "3.2, 2.0",
+    })
+    void tax(double expected, double price) {
+        RestaurantDish dish = new RestaurantDish("name", price);
 
-        Assertions.assertEquals(expected, result);
-    }
+        double result = taxer.tax(dish);
 
-    static Stream<Arguments> parametersTax() {
-        return Stream.of(
-                Arguments.of(5.0, new RestaurantDish("soda", 3.8)),
-                Arguments.of(6.5, new RestaurantDish("orange juice", 5.3)),
-                Arguments.of(7.7, new RestaurantDish("milkshake", 6.5))
-        );
-    }
-
-    @ParameterizedTest
-    @MethodSource("parametersTax")
-    void tax(double expected, RestaurantDish input) {
-        double result = beverageTaxer.tax(input);
-
-        Assertions.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 }

@@ -8,7 +8,7 @@ public class User {
     private String email;
     private String accountType;
 
-    public User() {
+    User() {
     }
 
     public User(String name, String email, String accountType) {

@@ -4,8 +4,8 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class Human implements Player {
-    private Scanner scanner = new Scanner(System.in);
-    private MoveUtils moveUtils;
+    private final Scanner scanner = new Scanner(System.in);
+    private final MoveUtils moveUtils;
 
     public Human(MoveUtils moveUtils) {
         this.moveUtils = moveUtils;

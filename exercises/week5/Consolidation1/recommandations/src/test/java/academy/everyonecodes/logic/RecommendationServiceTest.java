@@ -1,7 +1,7 @@
 package academy.everyonecodes.logic;
 
-import academy.everyonecodes.communication.client.HotRightnowClient;
-import academy.everyonecodes.communication.client.TailoredRecommendationsClient;
+import academy.everyonecodes.runner.client.HotRightnowClient;
+import academy.everyonecodes.runner.client.TailoredRecommendationsClient;
 import academy.everyonecodes.domain.Movie;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)

@@ -7,7 +7,7 @@ public class User {
     private String email;
     private String accountType;
 
-    public User() {
+    User() {
     }
 
     public User(String email, String accountType) {

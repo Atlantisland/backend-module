@@ -1,6 +1,7 @@
 package academy.everyonecodes.drhouseDiagnoses.communication;
 
 import academy.everyonecodes.drhouseDiagnoses.domain.Patient;
+import academy.everyonecodes.drhouseDiagnoses.logic.DiagnosisRoom;
 import academy.everyonecodes.drhouseDiagnoses.logic.DrHouse;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -20,7 +21,7 @@ class PatientEndpointTest {
     TestRestTemplate restTemplate;
 
     @MockBean
-    DrHouse drHouse;
+    DiagnosisRoom diagnosisRoom;
 
     String url = "/patients";
     Patient patient = new Patient("uuid", "patient1", "fatigue, appear pale", "anemia");
@@ -28,8 +29,6 @@ class PatientEndpointTest {
     @Test
     void postDiagnosedPatient(){
         restTemplate.postForObject(url, patient, Patient.class);
-        verify(drHouse).diagnose(patient);
+        verify(diagnosisRoom).diagnose(patient);
     }
 }
-
-//I need to stop here in order to commit

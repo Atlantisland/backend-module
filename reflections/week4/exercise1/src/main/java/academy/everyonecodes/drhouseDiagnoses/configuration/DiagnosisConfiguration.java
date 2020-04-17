@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-@ConfigurationProperties("diagnosis")
+@ConfigurationProperties("drhouse")
 public class DiagnosisConfiguration {
 
     private List<Diagnosis> diagnoses;
@@ -18,7 +18,7 @@ public class DiagnosisConfiguration {
         return diagnoses;
     }
 
-    public void setDiagnoses(List<Diagnosis> diagnoses) {
+    void setDiagnoses(List<Diagnosis> diagnoses) {
         this.diagnoses = diagnoses;
     }
 }

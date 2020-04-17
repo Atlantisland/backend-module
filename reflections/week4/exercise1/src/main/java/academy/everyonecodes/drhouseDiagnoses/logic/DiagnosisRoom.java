@@ -13,7 +13,10 @@ public class DiagnosisRoom {
         this.drHouse = drHouse;
     }
 
-    public Patient diagnose (Patient patient){
-
+    public Patient diagnose(Patient patient) {
+        drHouse.diagnose(patient);
+        System.out.println("Patient with the symptoms: " + patient.getSymptoms() +
+                "; diagnosed with: " + patient.getDiagnosis());
+        return patient;
     }
 }

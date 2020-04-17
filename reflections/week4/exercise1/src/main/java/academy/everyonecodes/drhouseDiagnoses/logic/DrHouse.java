@@ -15,16 +15,16 @@ public class DrHouse {
         this.diagnoses = diagnoses;
     }
 
-    public Diagnosis diagnose(Patient patient) {
-        String diagnosis = diagnoses.get(patient.getSymptoms());
-        //I should stream the diagnoses list and to find based on the symptoms of the patient the diagnosis
-        //but I stop here. I know that inside the get it should be a number and i have a string...:(
-
+    public void diagnose(Patient patient) {
+        String diagnosis = findDiagnosis(patient);
         patient.setDiagnosis(diagnosis);
-        if (patient.getDiagnosis().equalsIgnoreCase(diagnosis)) {
-            return new Diagnosis(diagnosis, patient.getSymptoms());
-        }
-        return new Diagnosis("lupus", patient.getSymptoms());
+    }
+
+    private String findDiagnosis(Patient patient) {
+        return diagnoses.stream().filter(diagnosis -> diagnosis.getSymptoms().equalsIgnoreCase(patient.getSymptoms()))
+                .map(Diagnosis::getName)
+                .findFirst()
+                .orElse("lupus");
     }
 }
 

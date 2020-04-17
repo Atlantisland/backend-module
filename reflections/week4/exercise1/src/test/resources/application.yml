@@ -1,0 +1,4 @@
+drhouse:
+  diagnoses:
+    - name: test-diagnosis
+      symptoms: test-symptom

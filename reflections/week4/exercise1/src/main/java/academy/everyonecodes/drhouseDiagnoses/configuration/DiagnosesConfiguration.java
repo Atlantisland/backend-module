@@ -9,7 +9,7 @@ import java.util.List;
 
 @Configuration
 @ConfigurationProperties("drhouse")
-public class DiagnosisConfiguration {
+public class DiagnosesConfiguration {
 
     private List<Diagnosis> diagnoses;
 

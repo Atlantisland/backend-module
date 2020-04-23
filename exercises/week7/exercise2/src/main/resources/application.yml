@@ -1,0 +1,11 @@
+server:
+  port: 9000
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/couch-potato?useSSL=false
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update

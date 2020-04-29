@@ -1,0 +1,5 @@
+server:
+  port: 9000
+message:
+  server:
+    url: http://localhost:9001/polo

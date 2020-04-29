@@ -1,0 +1,24 @@
+server:
+  port: 9000
+
+language-school:
+  messages:
+    everyone: Online Language School.
+    languages: Our available languages are German and English.
+    german: Willkommen
+    english: Welcome
+
+  language-school-users:
+    - username: michael
+      password: geheim
+      authorities: ROLE_USER, ROLE_LANGUAGE_GERMAN
+    - username: stacey
+      password: secret
+      authorities: ROLE_USER, ROLE_LANGUAGE_ENGLISH
+    - username: admin
+      password: admin
+      authorities: ROLE_ADMIN
+
+  interactions:
+    amount: 100
+    delay: 5000

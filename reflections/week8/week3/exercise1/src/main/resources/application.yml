@@ -1,0 +1,12 @@
+server:
+  port: 9001
+
+drhouse:
+  diagnoses:
+    url: http://localhost:9002/patients
+
+spring:
+  security:
+    user:
+      name: drhousehospital
+      password: drhousehospital

@@ -13,10 +13,15 @@ public class Invoice {
     private double cost;
     private boolean paid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Patient patient;
 
     public Invoice() {
+    }
+
+    public Invoice(double cost, Patient patient) {
+        this.cost = cost;
+        this.patient = patient;
     }
 
     public Invoice(double cost, boolean paid, Patient patient) {

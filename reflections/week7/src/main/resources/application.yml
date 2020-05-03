@@ -11,5 +11,14 @@ spring:
       ddl-auto: update
 
 drhouse:
-  invoice:
-    cost: 90.00
+  accountancy:
+    cost: 90
+
+    credentials:
+      - username: walter
+        password: secret321
+        authorities: ROLE_ACCOUNTANT
+      - username: julia
+        password: secret123
+        authorities: ROLE_ACCOUNTANT
+

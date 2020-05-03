@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/patients")
 public class PatientEndpoint {
 
-    private final PatientService patientService;
+    private final PatientService service;
 
-    public PatientEndpoint(PatientService patientService) {
-        this.patientService = patientService;
+    public PatientEndpoint(PatientService service) {
+        this.service = service;
     }
 
     @PostMapping
-    PatientDto post(@RequestBody PatientDto patientDto){
-        patientService.invoice(patientDto);
-        return patientDto;
+    PatientDto post(@RequestBody PatientDto patientDTO) {
+        service.invoice(patientDTO);
+        return patientDTO;
     }
 }
+

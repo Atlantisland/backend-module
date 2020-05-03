@@ -15,16 +15,16 @@ class DrHouseTest {
     DrHouse drHouse;
 
     @ParameterizedTest
-
     @CsvSource({
             "lupus, ''",
             "lupus, test-symptom2",
             "test-diagnosis, test-symptom",
-            "test-diagnosis, Test-symptom"
+            "test-diagnosis, Test-symptom",
     })
     void diagnose(String diagnosis, String symptoms) {
         Patient incomingPatient = new Patient("test", "test", symptoms);
         assertNull(incomingPatient.getDiagnosis());
+
         drHouse.diagnose(incomingPatient);
 
         Patient diagnosedPatient = new Patient("test", "test", symptoms, diagnosis);

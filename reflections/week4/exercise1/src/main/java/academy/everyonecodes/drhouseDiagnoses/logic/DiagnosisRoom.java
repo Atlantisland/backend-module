@@ -1,5 +1,6 @@
 package academy.everyonecodes.drhouseDiagnoses.logic;
 
+import academy.everyonecodes.drhouseDiagnoses.communication.TreatmentsClient;
 import academy.everyonecodes.drhouseDiagnoses.domain.Patient;
 import org.springframework.stereotype.Service;
 
@@ -7,16 +8,18 @@ import org.springframework.stereotype.Service;
 public class DiagnosisRoom {
 
     private final DrHouse drHouse;
+    private final TreatmentsClient treatmentsClient;
 
-
-    public DiagnosisRoom(DrHouse drHouse) {
+    public DiagnosisRoom(DrHouse drHouse, TreatmentsClient treatmentsClient) {
         this.drHouse = drHouse;
+        this.treatmentsClient = treatmentsClient;
     }
 
     public Patient diagnose(Patient patient) {
         drHouse.diagnose(patient);
-        System.out.println("Patient with the symptoms: " + patient.getSymptoms() +
-                "; diagnosed with: " + patient.getDiagnosis());
+        treatmentsClient.send(patient);
         return patient;
     }
 }
+
+

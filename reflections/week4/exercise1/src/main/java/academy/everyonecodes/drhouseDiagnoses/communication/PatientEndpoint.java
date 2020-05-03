@@ -2,7 +2,6 @@ package academy.everyonecodes.drhouseDiagnoses.communication;
 
 import academy.everyonecodes.drhouseDiagnoses.domain.Patient;
 import academy.everyonecodes.drhouseDiagnoses.logic.DiagnosisRoom;
-import academy.everyonecodes.drhouseDiagnoses.logic.DrHouse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,3 +22,4 @@ public class PatientEndpoint {
         return diagnosisRoom.diagnose(patient);
     }
 }
+

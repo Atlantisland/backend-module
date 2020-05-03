@@ -21,10 +21,12 @@ public class DrHouse {
     }
 
     private String findDiagnosis(Patient patient) {
-        return diagnoses.stream().filter(diagnosis -> diagnosis.getSymptoms().equalsIgnoreCase(patient.getSymptoms()))
+        return diagnoses.stream()
+                .filter(diagnosis -> diagnosis.getSymptoms().equalsIgnoreCase(patient.getSymptoms()))
                 .map(Diagnosis::getName)
                 .findFirst()
                 .orElse("lupus");
     }
 }
+
 

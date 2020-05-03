@@ -1,4 +1,7 @@
 drhouse:
+  treatments:
+    url: drhouse.treatments.test
+
   diagnoses:
     - name: test-diagnosis
       symptoms: test-symptom

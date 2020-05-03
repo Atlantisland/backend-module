@@ -1,4 +1,10 @@
+server:
+  port: 9002
+
 drhouse:
+  treatments:
+    url: http://localhost:9003/patients
+
   diagnoses:
     - name: allergy
       symptoms: sneezing, nasal congestion
@@ -6,6 +12,3 @@ drhouse:
       symptoms: fatigue, appear pale
     - name: anxiety
       symptoms: stress, irritability
-
-server:
-  port: 9002

@@ -60,16 +60,16 @@ public class Patient {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Patient)) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(uuid, patient.uuid) &&
-                Objects.equals(name, patient.name) &&
-                Objects.equals(symptoms, patient.symptoms) &&
-                Objects.equals(diagnosis, patient.diagnosis);
+        return Objects.equals(getUuid(), patient.getUuid()) &&
+                Objects.equals(getName(), patient.getName()) &&
+                Objects.equals(getSymptoms(), patient.getSymptoms()) &&
+                Objects.equals(getDiagnosis(), patient.getDiagnosis());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, name, symptoms, diagnosis);
+        return Objects.hash(getUuid(), getName(), getSymptoms(), getDiagnosis());
     }
 }

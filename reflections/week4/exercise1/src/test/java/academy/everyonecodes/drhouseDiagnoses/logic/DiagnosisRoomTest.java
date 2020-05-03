@@ -1,5 +1,6 @@
 package academy.everyonecodes.drhouseDiagnoses.logic;
 
+import academy.everyonecodes.drhouseDiagnoses.communication.TreatmentsClient;
 import academy.everyonecodes.drhouseDiagnoses.domain.Patient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +12,25 @@ import static org.mockito.Mockito.verify;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class DiagnosisRoomTest {
+
     @Autowired
-    DiagnosisRoom diagnosisRoom​;
+    DiagnosisRoom diagnosisRoom;
 
     @MockBean
-    DrHouse drHouse​;
+    DrHouse drHouse;
+
+    @MockBean
+    TreatmentsClient treatmentsClient;
 
     @Test
     void diagnose() {
         Patient patient = new Patient("test", "test", "test");
-        diagnosisRoom​.diagnose(patient);
-        verify(drHouse​).diagnose(patient);
+
+        diagnosisRoom.diagnose(patient);
+
+        verify(drHouse).diagnose(patient);
+        verify(treatmentsClient).send(patient);
     }
 }
+
+

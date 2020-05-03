@@ -7,7 +7,7 @@ public class Diagnosis {
     private String name;
     private String symptoms;
 
-    public Diagnosis() {
+    Diagnosis() {
     }
 
     public Diagnosis(String name, String symptoms) {
@@ -29,19 +29,5 @@ public class Diagnosis {
 
     void setSymptoms(String symptoms) {
         this.symptoms = symptoms;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Diagnosis diagnosis = (Diagnosis) o;
-        return Objects.equals(name, diagnosis.name) &&
-                Objects.equals(symptoms, diagnosis.symptoms);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, symptoms);
     }
 }

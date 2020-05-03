@@ -2,9 +2,7 @@ package academy.everyonecodes.drhouseDiagnoses.communication;
 
 import academy.everyonecodes.drhouseDiagnoses.domain.Patient;
 import academy.everyonecodes.drhouseDiagnoses.logic.DiagnosisRoom;
-import academy.everyonecodes.drhouseDiagnoses.logic.DrHouse;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,11 +22,14 @@ class PatientEndpointTest {
     DiagnosisRoom diagnosisRoom;
 
     String url = "/patients";
-    Patient patient = new Patient("uuid", "patient1", "fatigue, appear pale", "anemia");
 
     @Test
-    void postDiagnosedPatient(){
+    void post() {
+        Patient patient = new Patient("test", "test", "test");
+
         restTemplate.postForObject(url, patient, Patient.class);
+
         verify(diagnosisRoom).diagnose(patient);
     }
 }
+

@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MessageService {
@@ -17,23 +16,24 @@ public class MessageService {
     private final String apprentices;
 
     public MessageService(UserRepository repository, PasswordEncoder encoder,
-                        @Value("${apprentices}") String apprentices) {
+                        @Value("${mysterious-secret-order.apprentice.authorities}") String apprentices) {
         this.repository = repository;
         this.encoder = encoder;
         this.apprentices = apprentices;
     }
-    public void save(User user){
-        String password = encoder.encode(user.getPassword());
-        user.setPassword(password);
-        repository.save(user);
-    }
+
     public List<User> findAll(){
         return repository.findAll();
     }
+
     public List<User> findApprentices(){
         return repository.findByAuthorities(apprentices);
     }
-    public Optional<User> findByUsername(String username){
-        return repository.findOneByUsername(username);
+
+    public User save(User user) {
+        String password = user.getPassword();
+        String encoded = encoder.encode(password);
+        user.setPassword(encoded);
+        return repository.save(user);
     }
 }

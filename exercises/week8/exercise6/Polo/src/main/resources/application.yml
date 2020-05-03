@@ -6,3 +6,8 @@ spring:
     user:
       name: marcopolo
       password: marcopolo
+
+polo:
+  question: Marco
+  correct: Polo
+  wrong: What?

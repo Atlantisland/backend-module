@@ -22,7 +22,7 @@ class MarcoEndpointTest {
     void getMessage() {
         String message = "marco";
 
-        restTemplate.getForObject(url+"/"+message, String.class);
+        restTemplate.getForObject(url + "/" + message, String.class);
 
         Mockito.verify(poloClient).post(message);
     }

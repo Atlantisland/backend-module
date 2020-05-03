@@ -6,12 +6,11 @@ spring:
     mongodb:
       uri: mongodb://localhost/mysterious-secret-order
 
-messages:
+mysterious-secret-order:
   message: Mysterious Secret Order
-
-credentials:
-  username: master
-  password: secret
-  authorities: ROLE_MASTER
-
-apprentices: ROLE_APPRENTICE
+  master:
+    username: master
+    password: secret
+    authorities: ROLE_MASTER
+  apprentice:
+    authorities: ROLE_APPRENTICE

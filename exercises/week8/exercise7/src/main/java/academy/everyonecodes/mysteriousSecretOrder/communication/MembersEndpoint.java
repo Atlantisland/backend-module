@@ -17,22 +17,21 @@ public class MembersEndpoint {
         this.messageService = messageService;
     }
 
-    @PostMapping
-    @Secured("ROLE_MASTER")
-    User post(@RequestBody User user) {
-        messageService.save(user);
-        return user;
-    }
-
     @GetMapping
     @Secured("ROLE_MASTER")
-    List<User> get() {
+    List<User> getMembers() {
         return messageService.findAll();
     }
 
     @GetMapping("/apprentices")
-    @Secured({"ROLE_APPRENTICE", "ROLE_MASTER"})
+    @Secured({"ROLE_MASTER", "ROLE_APPRENTICE"})
     List<User> getApprentices() {
         return messageService.findApprentices();
+    }
+
+    @PostMapping
+    @Secured("ROLE_MASTER")
+    User post(@RequestBody User user) {
+        return messageService.save(user);
     }
 }

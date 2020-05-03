@@ -4,14 +4,12 @@ import academy.everyonecodes.mysteriousSecretOrder.persistence.domain.User;
 import academy.everyonecodes.mysteriousSecretOrder.persistence.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.List;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -27,21 +25,8 @@ class MessageServiceTest {
     @MockBean
     PasswordEncoder passwordEncoder;
 
-    @Test
-    void save() {
-        String password = "password";
-        String encoded = "passw0rd";
-
-        User user = new User("user", password, Set.of("ROLE"));
-
-        when(passwordEncoder.encode(password))
-                .thenReturn(encoded);
-
-        messageService.save(user);
-
-        verify(passwordEncoder).encode(password);
-        verify(userRepository).save(user);
-    }
+    @Value("${mysterious-secret-order.apprentice.authorities}")
+    String apprenticeAuthorities;
 
     @Test
     void findAll() {
@@ -52,11 +37,20 @@ class MessageServiceTest {
 
     @Test
     void findApprentices() {
-        List<User> result = messageService.findApprentices();
-        List<User> expected = List.of(new User("master", "master", Set.of("ROLE_MASTER", "ROLE_APPRENTICE")));
+        messageService.findApprentices();
 
-        assertEquals(expected, result);
+        verify(userRepository).findByAuthorities(apprenticeAuthorities);
+    }
 
-        verify(userRepository).findByAuthorities("ROLE_MASTER");
+    @Test
+    void save() {
+        User user = new User("username", "password", Set.of("ROLE_TEST"));
+        when(passwordEncoder.encode("password"))
+                .thenReturn("encrypted");
+
+        messageService.save(user);
+
+        User expected = new User("username", "encrypted", Set.of("ROLE_TEST"));
+        verify(userRepository).save(expected);
     }
 }

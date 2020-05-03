@@ -18,6 +18,6 @@ public class PoloClient {
     }
 
     public String post(String message){
-        return restTemplate.postForObject(url + "/" + message, message, String.class);
+        return restTemplate.postForObject(url, message, String.class);
     }
 }

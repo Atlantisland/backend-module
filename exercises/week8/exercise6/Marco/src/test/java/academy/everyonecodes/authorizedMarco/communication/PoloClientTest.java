@@ -9,6 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class PoloClientTest {
@@ -23,11 +24,12 @@ class PoloClientTest {
     String url;
 
     @Test
-    void getMessage() {
-        String message = "Marco";
-        Mockito.when(restTemplate.postForObject(url + "/" + message, message, String.class))
-                .thenReturn("Polo");
+    void send() {
+        String message = "message";
+
         poloClient.post(message);
-        Mockito.verify(restTemplate).postForObject(url + "/" + message, message, String.class);
+
+        verify(restTemplate).postForObject(url, message, String.class);
     }
 }
+

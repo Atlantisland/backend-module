@@ -1,7 +1,6 @@
 package academy.everyonecodes.securedPolo.communication;
 
 import academy.everyonecodes.securedPolo.logic.Polo;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +15,6 @@ public class PoloEndpoint {
 
     @PostMapping
     String post(@RequestBody String message){
-        return polo.giveResponse(message);
+        return polo.respond(message);
     }
 }

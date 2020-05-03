@@ -40,3 +40,4 @@ class UuidCacheEndpointTest {
         verify(uuidProvider).findUUID(patientName);
     }
 }
+

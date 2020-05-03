@@ -4,8 +4,6 @@ import academy.everyonecodes.drhouseAdmission.communication.DiagnosesClient;
 import academy.everyonecodes.drhouseAdmission.domain.Patient;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 public class Admission {
 
@@ -23,4 +21,5 @@ public class Admission {
         return patient;
     }
 }
+
 

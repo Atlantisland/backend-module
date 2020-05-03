@@ -24,7 +24,7 @@ class AdmissionTest {
 
     @Test
     void admit() {
-        Patient patient = new Patient(null, "test", "test");
+        Patient patient = new Patient("test", "test");
 
         admission.admit(patient);
 
@@ -32,3 +32,4 @@ class AdmissionTest {
         verify(diagnosesClient).send(patient);
     }
 }
+

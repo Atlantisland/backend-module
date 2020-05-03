@@ -14,10 +14,6 @@ public class Treatment {
     Treatment() {
     }
 
-    public Treatment(String treatment) {
-        this.treatment = treatment;
-    }
-
     public Treatment(String uuid, String name, String symptoms, String diagnosis, String treatment) {
         this.uuid = uuid;
         this.name = name;
@@ -77,18 +73,20 @@ public class Treatment {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Treatment)) return false;
         Treatment treatment1 = (Treatment) o;
-        return Objects.equals(id, treatment1.id) &&
-                Objects.equals(uuid, treatment1.uuid) &&
-                Objects.equals(name, treatment1.name) &&
-                Objects.equals(symptoms, treatment1.symptoms) &&
-                Objects.equals(diagnosis, treatment1.diagnosis) &&
-                Objects.equals(treatment, treatment1.treatment);
+        return Objects.equals(getId(), treatment1.getId()) &&
+                Objects.equals(getUuid(), treatment1.getUuid()) &&
+                Objects.equals(getName(), treatment1.getName()) &&
+                Objects.equals(getSymptoms(), treatment1.getSymptoms()) &&
+                Objects.equals(getDiagnosis(), treatment1.getDiagnosis()) &&
+                Objects.equals(getTreatment(), treatment1.getTreatment());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, uuid, name, symptoms, diagnosis, treatment);
+        return Objects.hash(getId(), getUuid(), getName(), getSymptoms(), getDiagnosis(), getTreatment());
     }
 }
+
+

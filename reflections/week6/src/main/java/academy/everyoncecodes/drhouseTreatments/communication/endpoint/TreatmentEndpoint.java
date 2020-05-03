@@ -1,4 +1,4 @@
-package academy.everyoncecodes.drhouseTreatments.communication;
+package academy.everyoncecodes.drhouseTreatments.communication.endpoint;
 
 import academy.everyoncecodes.drhouseTreatments.domain.Treatment;
 import academy.everyoncecodes.drhouseTreatments.logic.TreatmentService;

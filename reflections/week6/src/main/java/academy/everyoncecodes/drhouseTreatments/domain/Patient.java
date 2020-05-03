@@ -10,7 +10,14 @@ public class Patient {
     private String diagnosis;
     private String treatment;
 
-    public Patient() {
+    Patient() {
+    }
+
+    public Patient(String uuid, String name, String symptoms, String diagnosis) {
+        this.uuid = uuid;
+        this.name = name;
+        this.symptoms = symptoms;
+        this.diagnosis = diagnosis;
     }
 
     public Patient(String uuid, String name, String symptoms, String diagnosis, String treatment) {
@@ -21,15 +28,11 @@ public class Patient {
         this.treatment = treatment;
     }
 
-    public Patient(String treatment) {
-       this.treatment = treatment;
-    }
-
     public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
@@ -37,7 +40,7 @@ public class Patient {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
@@ -45,7 +48,7 @@ public class Patient {
         return symptoms;
     }
 
-    public void setSymptoms(String symptoms) {
+    void setSymptoms(String symptoms) {
         this.symptoms = symptoms;
     }
 
@@ -68,17 +71,17 @@ public class Patient {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Patient)) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(uuid, patient.uuid) &&
-                Objects.equals(name, patient.name) &&
-                Objects.equals(symptoms, patient.symptoms) &&
-                Objects.equals(diagnosis, patient.diagnosis) &&
-                Objects.equals(treatment, patient.treatment);
+        return Objects.equals(getUuid(), patient.getUuid()) &&
+                Objects.equals(getName(), patient.getName()) &&
+                Objects.equals(getSymptoms(), patient.getSymptoms()) &&
+                Objects.equals(getDiagnosis(), patient.getDiagnosis()) &&
+                Objects.equals(getTreatment(), patient.getTreatment());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, name, symptoms, diagnosis, treatment);
+        return Objects.hash(getUuid(), getName(), getSymptoms(), getDiagnosis(), getTreatment());
     }
 }

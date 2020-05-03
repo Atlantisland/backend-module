@@ -16,19 +16,22 @@ public class TreatmentService {
         this.repository = repository;
     }
 
-    public Patient post(Treatment treatment) {
-        Patient patient = new Patient();
-        patient.setTreatment(treatment.getTreatment());
+    public void save(Patient patient){
+        Treatment treatment = createTreatment(patient);
         repository.save(treatment);
-        return patient;
     }
 
-    public List<Treatment> getAllTreatments() {
-        return repository.findAllByTreatment();
+    private Treatment createTreatment(Patient patient){
+        return new Treatment(patient.getUuid(), patient.getName(), patient.getSymptoms(), patient.getDiagnosis(), patient.getTreatment());
+
     }
 
-    public List<Treatment> getAllTreatmentsByUuid(String uuid) {
-        return repository.finaAllByUuid(uuid);
+    public List<Treatment> findAll(){
+        return repository.findAll();
+    }
+
+    public List<Treatment> findByUuid(String uuid){
+        return repository.findByUuid(uuid);
     }
 }
 

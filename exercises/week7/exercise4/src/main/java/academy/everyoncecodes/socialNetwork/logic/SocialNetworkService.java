@@ -4,7 +4,7 @@ import academy.everyoncecodes.socialNetwork.persistence.domain.Person;
 import academy.everyoncecodes.socialNetwork.persistence.domain.PersonDTO;
 import academy.everyoncecodes.socialNetwork.persistence.repository.PersonRepository;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,71 +13,52 @@ import java.util.stream.Collectors;
 public class SocialNetworkService {
 
     private final PersonRepository repository;
+    private final PersonToPersonDtoTranslator translator;
 
-    public SocialNetworkService(PersonRepository repository) {
+    public SocialNetworkService(PersonRepository repository, PersonToPersonDtoTranslator translator) {
         this.repository = repository;
+        this.translator = translator;
     }
 
-    public PersonDTO post(PersonDTO personDTO){
-        Person person = translateIntoPerson(personDTO);
+    public PersonDTO post(PersonDTO personDTO) {
+        Person person = translator.translateToEntity(personDTO);
         repository.save(person);
-        return translateIntoPersonDTO(person);
+        return translator.translateToDto(person);
     }
 
-    public Person translateIntoPerson(PersonDTO personDTO){
-        return new Person(personDTO.getName(), new ArrayList<>());
-    }
-
-    public PersonDTO translateIntoPersonDTO(Person person){
-        return new PersonDTO(
-                person.getId(),
-                person.getName(),
-                person.getFriends()
-                    .stream()
-                    .map(Person::getName)
-                .collect(Collectors.toList())
-                );
-    }
-
-    public List<PersonDTO> getAll(){
+    public List<PersonDTO> getAll() {
         List<Person> friends = repository.findAll();
         return friends.stream()
-                .map(friend->translateIntoPersonDTO(friend))
+                .map(translator::translateToDto)
                 .collect(Collectors.toList());
     }
 
-    public void connectById(Long id1, Long id2){
-        Optional<Person> person1 = repository.findById(id1);
-        Optional<Person> person2 = repository.findById(id2);
-        if(person1.isPresent() && person2.isPresent()){
-            connect(person1.get(), person2.get());
-            connect(person2.get(), person1.get());
+    public void connectById(Long id1, Long id2) {
+        Optional<Person> oPerson1 = repository.findById(id1);
+        Optional<Person> oPerson2 = repository.findById(id2);
+        if (oPerson1.isEmpty() || oPerson2.isEmpty()) {
+            return;
         }
+        Person person1 = oPerson1.get();
+        Person person2 = oPerson2.get();
+        person1.getFriends().add(person2);
+        person2.getFriends().add(person1);
+        repository.save(person1);
+        repository.save(person2);
     }
 
-    public void connect(Person person1, Person person2){
-        List<Person> friends = person1.getFriends();
-        if(!friends.contains(person2)){
-            friends.add(person2);
-            repository.save(person1);
+    public void disconnectById(Long id1, Long id2) {
+        Optional<Person> oPerson1 = repository.findById(id1);
+        Optional<Person> oPerson2 = repository.findById(id2);
+        if (oPerson1.isEmpty() || oPerson2.isEmpty()) {
+            return;
         }
-    }
-
-    public void disconnectById(Long id1, Long id2){
-        Optional<Person> person1 = repository.findById(id1);
-        Optional<Person> person2 = repository.findById(id2);
-
-        if(person1.isPresent() && person2.isPresent()){
-            disconnect(person1.get(), person2.get());
-            disconnect(person2.get(), person1.get());
-        }
-    }
-
-    public void disconnect(Person person1, Person person2){
-        List<Person> friends = person1.getFriends();
-        if(!friends.contains(person2)){
-            friends.remove(person2);
-            repository.save(person1);
-        }
+        Person person1 = oPerson1.get();
+        Person person2 = oPerson2.get();
+        person1.getFriends().remove(person2);
+        person2.getFriends().remove(person1);
+        repository.save(person1);
+        repository.save(person2);
     }
 }
+

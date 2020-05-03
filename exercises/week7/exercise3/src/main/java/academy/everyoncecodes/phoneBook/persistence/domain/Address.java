@@ -15,10 +15,10 @@ public class Address {
     @NotEmpty
     private String street;
 
-    @Max(10000)
+    @Max(9999)
     private String postalCode;
 
-    Address() {
+    public Address() {
     }
 
     public Address(String street, String postalCode) {

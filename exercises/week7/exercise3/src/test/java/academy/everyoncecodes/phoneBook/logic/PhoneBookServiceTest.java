@@ -27,7 +27,6 @@ class PhoneBookServiceTest {
     @Test
     void save(){
         Contact contact = new Contact("name", new Address("street", "postalCode"));
-        assertNull(contact.getId());
         service.save(contact);
         verify(addressRepository).save(contact.getAddress());
         verify(contactRepository).save(contact);

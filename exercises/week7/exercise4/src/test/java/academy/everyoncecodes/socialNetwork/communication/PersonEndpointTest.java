@@ -19,9 +19,6 @@ class PersonEndpointTest {
     TestRestTemplate testRestTemplate;
 
     @MockBean
-    PersonRepository repository;
-
-    @MockBean
     SocialNetworkService service;
 
     private String url = "/persons";
@@ -41,15 +38,19 @@ class PersonEndpointTest {
 
     @Test
     void connect() {
-        String connectUrl = url + "/" + 1 + "/friend" + 2;
-        testRestTemplate.put(connectUrl, void.class);
-        verify(service).connectById(1L, 2L);
+        Long id1 = 123L;
+        Long id2 = 321L;
+        String connectUrl = url + "/" + id1 + "/friend/" + id2;
+        testRestTemplate.put(connectUrl, null);
+        verify(service).connectById(id1, id2);
     }
 
     @Test
     void disconnect() {
-        String disconnectUrl = url + "/" + 1 + "/unfriend" + 2;
-        testRestTemplate.put(disconnectUrl, void.class);
-        verify(service).disconnectById(1L, 2L);
+        Long id1 = 123L;
+        Long id2 = 321L;
+        String disconnectUrl = url + "/" + id1 + "/unfriend/" + id2;
+        testRestTemplate.put(disconnectUrl, null);
+        verify(service).disconnectById(id1, id2);
     }
 }

@@ -4,6 +4,7 @@ import academy.everyoncecodes.socialNetwork.logic.SocialNetworkService;
 import academy.everyoncecodes.socialNetwork.persistence.domain.PersonDTO;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class PersonEndpoint {
     }
 
     @PostMapping
-    PersonDTO post(@RequestBody PersonDTO personDTO){
+    PersonDTO post(@Valid @RequestBody PersonDTO personDTO){
         return service.post(personDTO);
     }
 

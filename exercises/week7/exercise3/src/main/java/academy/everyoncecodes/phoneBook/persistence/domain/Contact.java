@@ -1,6 +1,7 @@
 package academy.everyoncecodes.phoneBook.persistence.domain;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
@@ -14,14 +15,11 @@ public class Contact {
     @NotEmpty
     private String name;
 
+    @Valid
     @OneToOne
     private Address address;
 
-    Contact(){
-    }
-
-    public Contact(Address address) {
-        this.address = address;
+    public Contact(){
     }
 
     public Contact(String name, Address address) {

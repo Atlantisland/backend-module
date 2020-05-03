@@ -1,6 +1,7 @@
 package academy.everyoncecodes.socialNetwork.persistence.domain;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,13 +12,18 @@ public class PersonDTO {
     @NotEmpty
     private String name;
 
-    private List<String> friendNames;
+    private List<String> friendNames = new ArrayList<>();
 
     public PersonDTO() {
     }
 
     public PersonDTO(String name) {
         this.name = name;
+    }
+
+    public PersonDTO(String name, List<String> friendNames) {
+        this.name = name;
+        this.friendNames = friendNames;
     }
 
     public PersonDTO(Long id, String name, List<String> friendNames) {

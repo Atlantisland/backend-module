@@ -1,5 +1,6 @@
 package academy.everyonecodes.drivers.presistence.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,15 +11,16 @@ public class Driver {
     private String password;
     private String typeOfCar;
     private boolean isAvailable;
-    private Set<String> authorities;
+    private Set<String> authorities = new HashSet<>();
 
     public Driver() {
     }
 
-    public Driver(String username, String password, String typeOfCar) {
+    public Driver(String username, String password, String typeOfCar, boolean isAvailable, Set<String> authorities) {
         this.username = username;
         this.password = password;
         this.typeOfCar = typeOfCar;
+        this.isAvailable = isAvailable;
     }
 
     public Driver(String id, String username, String password, String typeOfCar, boolean isAvailable, Set<String> authorities) {
@@ -27,7 +29,6 @@ public class Driver {
         this.password = password;
         this.typeOfCar = typeOfCar;
         this.isAvailable = isAvailable;
-        this.authorities = authorities;
     }
 
     public String getId() {

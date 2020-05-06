@@ -7,6 +7,5 @@ import java.util.Optional;
 
 public interface DriverRepository extends MongoRepository<Driver, String> {
 
-    boolean existsByUsername(String username);
     Optional<Driver> findOneByUsername(String username);
 }

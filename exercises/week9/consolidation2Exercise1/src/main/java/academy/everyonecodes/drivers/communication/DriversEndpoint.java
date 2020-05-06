@@ -29,15 +29,13 @@ public class DriversEndpoint {
 
     @PutMapping("/{id}/available")
     @Secured("ROLE_DRIVER")
-    Driver putAvailable(@PathVariable String id){
-        return driverService.markAsAvailable(id)
-                .orElse(null);
+    void putAvailable(@PathVariable String id){
+        driverService.markAsAvailable(id);
     }
 
     @PutMapping("/{id}/unavailable")
     @Secured("ROLE_DRIVER")
-    Driver putUnavailable(@PathVariable String id){
-        return driverService.markAsUnavailable(id)
-                .orElse(null);
+    void putUnavailable(@PathVariable String id){
+        driverService.markAsUnavailable(id);
     }
 }

@@ -1,0 +1,20 @@
+server:
+  port: 9200
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/rides?useSSL=false
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+uber:
+  credentials:
+    - username: uberadmin
+      password: uberadmin
+      authorities: ROLE_ADMIN
+    - username: uberapp
+      password: uberapp
+      authorities: ROLE_APP

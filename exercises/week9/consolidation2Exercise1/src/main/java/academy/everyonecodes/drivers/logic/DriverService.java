@@ -7,57 +7,53 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class DriverService {
 
     private final DriverRepository driverRepository;
     private final PasswordEncoder passwordEncoder;
-    private final Set<String> authorities;
+    private final String authority;
 
-    public DriverService(DriverRepository driverRepository, PasswordEncoder passwordEncoder, @Value("${drivers.driver.authority}") Set<String> authorities) {
+    public DriverService(DriverRepository driverRepository, PasswordEncoder passwordEncoder, @Value("${drivers.driver.authority}") String authority) {
         this.driverRepository = driverRepository;
         this.passwordEncoder = passwordEncoder;
-        this.authorities = authorities;
+        this.authority = authority;
     }
 
     public Optional<Driver> findOne(String id){
         return driverRepository.findById(id);
     }
 
-    public Optional<Driver> findByUsername(String username){
-        return driverRepository.findOneByUsername(username);
-    }
-
     public Driver save(Driver driver){
+        Optional<Driver> oDriver = driverRepository.findOneByUsername(driver.getUsername());
+        if(oDriver.isPresent()){
+            return oDriver.get();
+        }
+        driver.getAuthorities().add(authority);
         String password = driver.getPassword();
         String encoded = passwordEncoder.encode(password);
         driver.setPassword(encoded);
-        driver.setAuthorities(authorities);
         return driverRepository.save(driver);
     }
 
-    public Optional<Driver> markAsAvailable(String id){
+    public void markAsAvailable(String id){
         Optional<Driver> oDriver = driverRepository.findById(id);
         if(oDriver.isEmpty()){
-            return Optional.empty();
+            return;
         }
         Driver driver = oDriver.get();
         driver.setAvailable(true);
         driverRepository.save(driver);
-        return Optional.of(driver);
     }
 
-    public Optional<Driver> markAsUnavailable(String id){
+    public void markAsUnavailable(String id){
         Optional<Driver> oDriver = driverRepository.findById(id);
         if(oDriver.isEmpty()){
-            return Optional.empty();
+            return;
         }
         Driver driver = oDriver.get();
         driver.setAvailable(false);
         driverRepository.save(driver);
-        return Optional.of(driver);
     }
-
 }

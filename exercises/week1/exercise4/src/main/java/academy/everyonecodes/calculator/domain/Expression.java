@@ -1,4 +1,4 @@
-package academy.everyonecodes.calculator;
+package academy.everyonecodes.calculator.domain;
 
 import java.util.Objects;
 

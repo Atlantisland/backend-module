@@ -18,7 +18,7 @@ class UpCounterTest {
 
     static Stream<Arguments> parameters() {
         return Stream.of(
-                Arguments.of(3, List.of(3.5, 4.9, 2.0, 2.8)),
+                Arguments.of(2, List.of(3.5, 4.9, 2.0, 2.8)),
                 Arguments.of(1, List.of(3.0, 4.3, -2.0, -2.3)),
                 Arguments.of(0, List.of(3.0, 4.3, -2.0, -2.8)),
                 Arguments.of(0, List.of()),

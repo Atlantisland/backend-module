@@ -1,6 +1,6 @@
-package academy.everyonecodes.calculator.calculations;
+package academy.everyonecodes.calculator;
 
-import academy.everyonecodes.calculator.Expression;
+import academy.everyonecodes.calculator.domain.Expression;
 
 public abstract class Calculation {
 
@@ -10,10 +10,9 @@ public abstract class Calculation {
         this.symbol = symbol;
     }
 
-    public boolean matches(Expression expression) {
+    public boolean matches(Expression expression){
         return symbol.equals(expression.getSymbol());
     }
 
     public abstract double calculate(Expression expression);
-
 }

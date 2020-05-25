@@ -1,6 +1,5 @@
 package academy.everyonecodes.helloworld.hello;
 
-import academy.everyonecodes.helloworld.hello.HelloWorld;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

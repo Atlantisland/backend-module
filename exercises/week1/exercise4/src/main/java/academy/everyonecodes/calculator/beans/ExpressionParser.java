@@ -1,5 +1,6 @@
-package academy.everyonecodes.calculator;
+package academy.everyonecodes.calculator.beans;
 
+import academy.everyonecodes.calculator.domain.Expression;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

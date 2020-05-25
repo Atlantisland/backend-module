@@ -1,13 +1,10 @@
 package academy.everyonecodes.roundupcounter.roundUpCounter;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class UpDownIndicatorTest {
@@ -17,11 +14,12 @@ class UpDownIndicatorTest {
 
     @ParameterizedTest
     @CsvSource({
-            "UP, 3.6",
-            "DOWN, 3.3",
-            "SAME, 3.0",
-            "UP, 3.5",
-            "UP, -3.5"
+            "SAME, 0.0",
+            "SAME, 0.5",
+            "UP, 0.6",
+            "UP, 0.9",
+            "DOWN, 0.4",
+            "DOWN, 0.1",
     })
 
     void indicate(String expected, double number) {

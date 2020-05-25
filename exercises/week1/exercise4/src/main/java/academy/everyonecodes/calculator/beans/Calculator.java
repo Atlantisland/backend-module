@@ -1,6 +1,8 @@
-package academy.everyonecodes.calculator;
+package academy.everyonecodes.calculator.beans;
 
-import academy.everyonecodes.calculator.calculations.Calculation;
+
+import academy.everyonecodes.calculator.Calculation;
+import academy.everyonecodes.calculator.domain.Expression;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -23,6 +25,5 @@ public class Calculator {
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
-
 }
 

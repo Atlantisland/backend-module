@@ -10,7 +10,8 @@ public class TemplateEngine {
     public TemplateEngine(TemplateMessageFinder finder) {
         this.finder = finder;
     }
+
     public String customise(String name){
-        return finder.find(name).replace("--name--", name);
+        return finder.find(name).replaceAll("--name--", name);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 @ConfigurationProperties("advanced")
 public class NaturalNumber {
+
     private int naturalNumber;
 
     public int getNaturalNumber(){

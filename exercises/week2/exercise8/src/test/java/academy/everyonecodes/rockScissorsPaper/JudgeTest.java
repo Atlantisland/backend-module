@@ -4,12 +4,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.awt.print.Paper;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class JudgeTest {
+
     Judge judge = new Judge();
 
     static Stream<Arguments> parameters() {

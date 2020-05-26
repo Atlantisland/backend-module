@@ -9,13 +9,12 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties("cinema.specialoffer")
 public class TemplateConfiguration {
-    private List<Template> templates;
 
+    private List<Template> templates;
 
     void setTemplates(List<Template> templates) {
         this.templates = templates;
     }
-
 
     @Bean
     List<Template> templates() {

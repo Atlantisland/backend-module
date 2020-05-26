@@ -8,8 +8,8 @@ import java.util.function.ToDoubleFunction;
 
 @Service
 public class BillCalculator {
-    private final Set<Taxer> taxers;
 
+    private final Set<Taxer> taxers;
 
     public BillCalculator(Set<Taxer> taxers) {
         this.taxers = taxers;
@@ -27,7 +27,6 @@ public class BillCalculator {
                 .map(taxer -> taxer.tax(dish))
                 .findFirst()
                 .orElse(dish.getPrice());
-
     }
 }
 

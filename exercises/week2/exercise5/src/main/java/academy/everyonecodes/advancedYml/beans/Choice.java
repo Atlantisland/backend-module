@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 @ConfigurationProperties("advanced")
 public class Choice {
+
     private boolean choice;
 
     public boolean getChoice() {

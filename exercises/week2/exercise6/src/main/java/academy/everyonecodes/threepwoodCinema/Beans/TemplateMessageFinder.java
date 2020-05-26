@@ -12,7 +12,8 @@ public class TemplateMessageFinder {
     private final List<Template> templates;
     private final String defaultMessage;
 
-    public TemplateMessageFinder(List<Template> templates, @Value("${cinema.specialoffer.defaultMessage}") String defaultMessage) {
+    public TemplateMessageFinder(List<Template> templates,
+                                 @Value("${cinema.specialoffer.defaultMessage}") String defaultMessage) {
 
         this.templates = templates;
         this.defaultMessage = defaultMessage;

@@ -8,6 +8,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class IssuerTest {
+
     Set<String> startsWith = Set.of("5");
     Set<Integer> lengths = Set.of(1,2);
     String name = "TestIssuer";

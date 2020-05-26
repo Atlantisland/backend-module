@@ -9,6 +9,7 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties("game")
 public class MoveConfiguration {
+
     private List<Move> moves;
 
     void setMoves(List<Move> moves) {

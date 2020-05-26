@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 @ConfigurationProperties("advanced")
 public class Message {
+
     private String message;
 
     public String getMessage() {

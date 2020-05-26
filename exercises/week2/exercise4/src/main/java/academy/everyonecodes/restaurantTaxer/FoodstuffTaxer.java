@@ -8,7 +8,8 @@ import java.util.List;
 @Service
 public class FoodstuffTaxer extends Taxer {
 
-    public FoodstuffTaxer(@Value("${restaurant.foodstuff.names}") List<String> names, @Value("${restaurant.foodstuff.tax}") double tax) {
+    public FoodstuffTaxer(@Value("${restaurant.foodstuff.names}") List<String> names,
+                          @Value("${restaurant.foodstuff.tax}") double tax) {
         super(names, tax);
     }
 }

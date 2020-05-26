@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class MoveUtils {
+
     private final List<Move> moves;
 
     public MoveUtils(List<Move> moves) {
@@ -17,7 +18,7 @@ public class MoveUtils {
     public String getNames() {
         return moves.stream()
                 .map(Move::getName)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(", "));
     }
 
     public Optional<Move> getOne(String name) {

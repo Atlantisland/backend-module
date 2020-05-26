@@ -12,7 +12,10 @@ public class SeveralValues {
     private List<String> severalWords;
     private List<Boolean> severalChoices;
 
-    public SeveralValues(@Value("${basic.several.naturalNumbers}") List<Integer> severalNaturalNumbers, @Value("${basic.several.decimalNumbers}") List<Double> severalDecimalNumbers, @Value("${basic.several.words}") List<String> severalWords, @Value("${basic.several.choices}") List<Boolean> severalChoices) {
+    public SeveralValues(@Value("${basic.several.naturalNumbers}") List<Integer> severalNaturalNumbers,
+                         @Value("${basic.several.decimalNumbers}") List<Double> severalDecimalNumbers,
+                         @Value("${basic.several.words}") List<String> severalWords,
+                         @Value("${basic.several.choices}") List<Boolean> severalChoices) {
         this.severalNaturalNumbers = severalNaturalNumbers;
         this.severalDecimalNumbers = severalDecimalNumbers;
         this.severalWords = severalWords;

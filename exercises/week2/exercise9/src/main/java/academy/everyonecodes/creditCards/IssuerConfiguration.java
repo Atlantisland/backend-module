@@ -5,10 +5,10 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Set;
 
-
 @Configuration
 @ConfigurationProperties("creditcards")
 public class IssuerConfiguration {
+
     private Set<Issuer> issuers;
 
     void setIssuers(Set<Issuer> issuers) {

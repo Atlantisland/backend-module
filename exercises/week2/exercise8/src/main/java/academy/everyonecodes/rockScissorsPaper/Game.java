@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Game {
+
     private final Player player1;
     private final Player player2;
     private final Judge judge;

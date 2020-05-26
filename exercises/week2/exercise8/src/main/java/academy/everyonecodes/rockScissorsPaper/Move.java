@@ -1,6 +1,7 @@
 package academy.everyonecodes.rockScissorsPaper;
 
 public class Move {
+
     private String name;
     private String defeats;
 

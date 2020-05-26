@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 @Service
 @ConfigurationProperties("singapore")
 public class BuildingReconstructionCandidateAnaliser {
+
     private List<Building> buildings;
     private int yearThreshold;
 

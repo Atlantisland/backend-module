@@ -6,7 +6,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LuhnTest {
-    Luhn luhn = new Luhn();
+
+   private Luhn luhn = new Luhn();
 
     @ParameterizedTest(name = "run #{index} with [{arguments}]")
     @CsvSource({

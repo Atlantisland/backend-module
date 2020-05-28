@@ -3,6 +3,7 @@ package academy.everyonecodes.domain;
 import java.util.Objects;
 
 public class Song {
+
     private String name;
     private String genre;
 

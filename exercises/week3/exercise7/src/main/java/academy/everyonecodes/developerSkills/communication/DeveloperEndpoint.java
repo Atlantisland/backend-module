@@ -13,20 +13,19 @@ import java.util.List;
 @RequestMapping("/developers")
 public class DeveloperEndpoint {
 
-    private final DeveloperService service;
+    private final DeveloperService developerService;
 
-
-    public DeveloperEndpoint(DeveloperService service) {
-        this.service = service;
+    public DeveloperEndpoint(DeveloperService developerService) {
+        this.developerService = developerService;
     }
 
     @GetMapping
-    List<Developer> getDeveloper(){
-        return service.findAll();
+    List<Developer> findAll(){
+        return developerService.findAll();
     }
 
     @GetMapping("/skills/{skills}")
-    List<Developer> getSkilledDeveloper(@PathVariable String skills){
-        return service.findBy(skills);
+    List<Developer> findBySkills(@PathVariable String skills){
+        return developerService.findBy(skills);
     }
 }

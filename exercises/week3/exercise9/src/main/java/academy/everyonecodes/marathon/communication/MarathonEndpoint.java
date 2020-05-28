@@ -8,20 +8,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/runners")
 public class MarathonEndpoint {
 
-    private final MarathonService service;
+    private final MarathonService marathonService;
 
-    public MarathonEndpoint(MarathonService service) {
-        this.service = service;
+    public MarathonEndpoint(MarathonService marathonService) {
+        this.marathonService = marathonService;
     }
 
     @PostMapping
-    Runner post(@RequestBody Runner runner) {
-        service.add(runner);
+    Runner post(@RequestBody Runner runner){
+        marathonService.add(runner);
         return runner;
     }
 
     @GetMapping("/winner")
-    Runner getWinner() {
-        return service.findWinner().orElse(null);
+    Runner winner(){
+        return marathonService.findWinner()
+                .orElse(null);
     }
 }

@@ -8,7 +8,7 @@ public class Runner {
     private String name;
     private Duration duration;
 
-    public Runner() {
+    Runner() {
     }
 
     public Runner(String name, Duration duration) {
@@ -20,12 +20,12 @@ public class Runner {
         return name;
     }
 
-    public Duration getDuration() {
-        return duration;
-    }
-
     void setName(String name) {
         this.name = name;
+    }
+
+    public Duration getDuration() {
+        return duration;
     }
 
     void setDuration(Duration duration) {

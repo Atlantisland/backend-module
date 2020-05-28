@@ -20,12 +20,12 @@ public class Developer {
         return name;
     }
 
-    public Set<String> getSkills() {
-        return skills;
-    }
-
     void setName(String name) {
         this.name = name;
+    }
+
+    public Set<String> getSkills() {
+        return skills;
     }
 
     void setSkills(Set<String> skills) {

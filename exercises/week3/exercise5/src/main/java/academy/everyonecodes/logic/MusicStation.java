@@ -4,9 +4,9 @@ import academy.everyonecodes.domain.Song;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @ConfigurationProperties("music")
@@ -14,17 +14,17 @@ public class MusicStation {
 
     private List<Song> songs;
 
-    void setSongs(List<Song> songs) {
-        this.songs = songs;
-    }
-
-    public List<Song> findAll(){
+    public List<Song> findAll() {
         return songs;
     }
 
-   public List<Song> findBy(String genre){
+    public List<Song> findBy(String genre) {
         return songs.stream()
                 .filter(song -> song.getGenre().equalsIgnoreCase(genre))
-                .collect(Collectors.toList());
+                .collect(toList());
+    }
+
+    void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 }

@@ -1,4 +1,4 @@
 server:
   port: 9000
-greeting: Hello
+greeting: Hello from the properties file!
 

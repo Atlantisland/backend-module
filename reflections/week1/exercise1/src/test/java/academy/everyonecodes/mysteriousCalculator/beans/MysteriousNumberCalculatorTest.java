@@ -20,7 +20,7 @@ class MysteriousNumberCalculatorTest {
             "The mysterious number is 2, -1"
     })
 
-    void colacualte(String expected, int number){
+    void calculate(String expected, int number){
         String result = calculator.calculate(number);
 
         assertEquals(expected, result);

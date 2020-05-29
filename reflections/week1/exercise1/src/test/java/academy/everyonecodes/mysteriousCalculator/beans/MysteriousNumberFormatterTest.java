@@ -1,5 +1,6 @@
-package academy.everyonecodes.mysteriousCalculator;
+package academy.everyonecodes.mysteriousCalculator.beans;
 
+import academy.everyonecodes.mysteriousCalculator.logic.MysteriousAddition;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -13,13 +14,12 @@ class MysteriousNumberFormatterTest {
     @CsvSource({
             "The mysterious number is 0, 0",
             "The mysterious number is 1, 1",
-            "The mysterious number is -1, -1",
+            "The mysterious number is -1, -1"
     })
-    void format(String expected, int number) {
+
+    void format(String expected, int number){
         String result = formatter.format(number);
 
         assertEquals(expected, result);
     }
 }
-
-

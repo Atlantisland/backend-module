@@ -36,14 +36,8 @@ public class PostEndpoint {
         return jsonPlaceholderClient.put(id, post);
     }
 
-    @DeleteMapping
-    void deleteAll() {
-        jsonPlaceholderClient.delete();
-    }
-
     @DeleteMapping("/{id}")
     void deleteOne(@PathVariable int id) {
         jsonPlaceholderClient.delete(id);
     }
-
 }

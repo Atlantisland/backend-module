@@ -1,25 +1,34 @@
 package academy.everyonecodes.marathonIntegration.configuration;
 
 import academy.everyonecodes.marathonIntegration.domain.Runner;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.Duration;
 import java.util.Set;
 
 @Configuration
+@ConfigurationProperties("integration")
 public class RunnerConfiguration {
 
-    @Bean
-    Runner winner(){
-        return new Runner("winner", Duration.ofSeconds(1));
+    private Runner winner;
+    private Set<Runner> runners;
+
+    void setWinner(Runner winner) {
+        this.winner = winner;
+    }
+
+    void setRunners(Set<Runner> runners) {
+        this.runners = runners;
     }
 
     @Bean
-    Set<Runner> runnerList(){
-        return Set.of(
-                new Runner("winner", Duration.ofSeconds(1)),
-                new Runner("runner2", Duration.ofSeconds(2)),
-                new Runner("runner3", Duration.ofSeconds(3)));
+    Runner winner(){
+        return winner;
+    }
+
+    @Bean
+    Set<Runner> runner(){
+        return runners;
     }
 }

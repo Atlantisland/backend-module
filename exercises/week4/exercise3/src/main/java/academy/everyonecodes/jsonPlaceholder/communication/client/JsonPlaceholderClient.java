@@ -49,10 +49,6 @@ public class JsonPlaceholderClient {
         return post;
     }
 
-    public void delete() {
-        restTemplate.delete(url);
-    }
-
     public void delete(int id) {
         restTemplate.delete(url + "/" + id);
     }

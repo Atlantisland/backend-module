@@ -15,7 +15,7 @@ public class FormulaClient {
         this.url = url;
     }
 
-    public Integer post(Integer number) {
+    public Integer send(int number) {
         return restTemplate.postForObject(url, number, Integer.class);
     }
 }

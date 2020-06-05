@@ -1,6 +1,6 @@
 package academy.everyonecodes.home.communication;
 
-import org.springframework.beans.factory.annotation.Value;
+import academy.everyonecodes.home.logic.Home;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/home")
 public class HomeEndpoint {
-    private final String homeName;
 
-    public HomeEndpoint(@Value("${homeName}") String homeName) {
-        this.homeName = homeName;
+    private final Home home;
+
+    public HomeEndpoint(Home home) {
+        this.home = home;
     }
 
     @GetMapping
     String get() {
-        return homeName;
+        return home.getMessage();
     }
 }

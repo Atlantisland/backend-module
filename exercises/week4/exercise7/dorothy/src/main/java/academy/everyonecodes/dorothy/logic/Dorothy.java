@@ -1,25 +1,29 @@
 package academy.everyonecodes.dorothy.logic;
 
+import academy.everyonecodes.dorothy.client.HomeClient;
+import academy.everyonecodes.dorothy.client.WizardClient;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Service;
 
-@Controller
+@Service
 public class Dorothy {
 
-    private final RestTemplate restTemplate;
-    private final String wizardUrl;
+    private final WizardClient wizardClient;
+    private final HomeClient homeClient;
+    private final String message;
 
-    public Dorothy(RestTemplate restTemplate,
-                   @Value("${wizard.url}") String wizardUrl) {
-        this.restTemplate = restTemplate;
-        this.wizardUrl = wizardUrl;
+    public Dorothy(WizardClient wizardClient,
+                   HomeClient homeClient,
+                   @Value("${dorothy.message}") String message) {
+        this.wizardClient = wizardClient;
+        this.homeClient = homeClient;
+        this.message = message;
     }
 
-    public String findHome() {
-        String homeUrl = restTemplate.getForObject(wizardUrl, String.class);
-        String home = restTemplate.getForObject(homeUrl, String.class);
-        return "My home is " + home;
+    public String getMessage() {
+        String homeUrl = wizardClient.getHomeUrl();
+        String homeMessage = homeClient.getHomeMessage(homeUrl);
+        return message + homeMessage;
     }
 }
 

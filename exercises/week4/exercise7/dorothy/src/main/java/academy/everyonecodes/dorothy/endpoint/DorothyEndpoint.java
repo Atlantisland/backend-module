@@ -16,7 +16,7 @@ public class DorothyEndpoint {
     }
 
     @GetMapping
-    String get() {
-        return dorothy.findHome();
+    String get(){
+        return dorothy.getMessage();
     }
 }

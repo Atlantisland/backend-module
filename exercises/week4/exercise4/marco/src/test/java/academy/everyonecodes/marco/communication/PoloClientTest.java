@@ -1,5 +1,6 @@
 package academy.everyonecodes.marco.communication;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class PoloClientTest {
@@ -25,11 +25,15 @@ class PoloClientTest {
 
     @Test
     void getMessage() {
-        String message = "Marco";
-        Mockito.when(restTemplate.postForObject(url + "/" + message, message, String.class))
-                .thenReturn("Polo");
-        poloClient.post(message);
-        Mockito.verify(restTemplate).postForObject(url + "/" + message, message, String.class);
+        String message = "message";
+        String expected = "answer";
+        Mockito.when(restTemplate.postForObject(url, message, String.class))
+                .thenReturn(expected);
+
+        String response = poloClient.post(message);
+
+        assertEquals(expected, response);
+        Mockito.verify(restTemplate).postForObject(url, message, String.class);
     }
 }
 

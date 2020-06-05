@@ -15,7 +15,6 @@ public class MarathonTester {
     private final Runner winner;
     private final Set<Runner> runners;
 
-
     public MarathonTester(MarathonClient marathonClient, Runner winner, Set<Runner> runners) {
         this.marathonClient = marathonClient;
         this.winner = winner;

@@ -1,15 +1,14 @@
 package academy.everyonecodes.dorothy.logic;
 
+import academy.everyonecodes.dorothy.client.HomeClient;
+import academy.everyonecodes.dorothy.client.WizardClient;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
@@ -20,25 +19,26 @@ class DorothyTest {
     Dorothy dorothy;
 
     @MockBean
-    RestTemplate restTemplate;
+    WizardClient wizardClient;
 
-    @Value("${wizard.url}")
-    String wizardUrl;
+    @MockBean
+    HomeClient homeClient;
+
+    @Value("${dorothy.message}")
+    String message;
 
     @Test
-    void findHome() {
+    void getHomeUrl(){
         String homeUrl = "homeUrl";
-        when(restTemplate.getForObject(wizardUrl, String.class))
+        when(wizardClient.getHomeUrl())
                 .thenReturn(homeUrl);
-        String home = "Home";
-        when(restTemplate.getForObject(homeUrl, String.class))
-                .thenReturn(home);
+        String homeMessage = "homeMessage";
+        when(homeClient.getHomeMessage(homeUrl))
+                .thenReturn(homeMessage);
 
-        String result = dorothy.findHome();
+        String result = dorothy.getMessage();
 
-        String expected = "My home is " + home;
+        String expected = message + homeMessage;
         assertEquals(expected, result);
-        verify(restTemplate).getForObject(wizardUrl, String.class);
-        verify(restTemplate).getForObject(homeUrl, String.class);
     }
 }

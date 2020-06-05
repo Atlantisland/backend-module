@@ -1,11 +1,8 @@
 package academy.everyonecodes.polo.logic;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PoloTest {
 
@@ -13,8 +10,10 @@ class PoloTest {
 
     @ParameterizedTest
     @CsvSource({
-            "Polo, Marco",
-            "What?, marco"
+            "What?, ''",
+            "What?, something",
+            "What?, marco",
+            "Polo, Marco"
     })
 
     void giveResponse(String expected, String input){

@@ -15,10 +15,10 @@ public class ComplexFormula {
         this.formulaClient = formulaClient;
     }
 
-    public int apply(int number){
+    public int apply(Integer number){
         return Integer.parseInt(
                 Arrays.stream(String.valueOf(number).split(""))
-                .map(digit -> formulaClient.post(Integer.parseInt(digit)))
+                .map(digit -> formulaClient.send(Integer.parseInt(digit)))
                 .map(Object::toString)
                 .collect(Collectors.joining())
         );

@@ -1,8 +1,8 @@
 package academy.everyonecodes.polo.communication;
 
 import academy.everyonecodes.polo.logic.Polo;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +16,8 @@ public class PoloEndpoint {
         this.polo = polo;
     }
 
-    @PostMapping("/{message}")
-    String post(@PathVariable String message){
+    @PostMapping
+    String post(@RequestBody String message){
         return polo.giveResponse(message);
     }
 }

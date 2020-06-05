@@ -11,19 +11,22 @@ import java.util.Optional;
 public class MarathonClient {
 
     private final RestTemplate restTemplate;
-    private final String url;
+    private final String winnerUrl;
+    private final String runnersUrl;
 
-
-    public MarathonClient(RestTemplate restTemplate, @Value("${marathon.webapp.url}") String url) {
+    public MarathonClient(RestTemplate restTemplate,
+                          @Value("${marathon.winner.url}") String winnerUrl,
+                          @Value("${marathon.runners.url}") String runnersUrl) {
         this.restTemplate = restTemplate;
-        this.url = url;
+        this.winnerUrl = winnerUrl;
+        this.runnersUrl = runnersUrl;
     }
 
     public Optional<Runner> getWinner(){
-        return Optional.ofNullable(restTemplate.getForObject(url +"/winner", Runner.class));
+        return Optional.ofNullable(restTemplate.getForObject(winnerUrl, Runner.class));
     }
 
     public Runner post(Runner runner){
-        return restTemplate.postForObject(url, runner, Runner.class);
+        return restTemplate.postForObject(runnersUrl, runner, Runner.class);
     }
 }

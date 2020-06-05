@@ -9,9 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.Duration;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class MarathonClientTest {
@@ -21,19 +22,36 @@ class MarathonClientTest {
 
     @MockBean
     RestTemplate restTemplate;
-    @Value("${marathon.webapp.url}")
-    String url;
+
+    @Value("${marathon.winner.url}")
+    String winnerUrl;
+
+    @Value("${marathon.runners.url}")
+    String runnersUrl;
+
+    @Autowired
+    Runner winner;
 
     @Test
     void getWinner() {
-        marathonClient.getWinner();
-        Mockito.verify(restTemplate).getForObject(url + "/winner", Runner.class);
+        when(restTemplate.getForObject(winnerUrl, Runner.class))
+                .thenReturn(winner);
+
+        Optional<Runner> oWinner = marathonClient.getWinner();
+
+        Optional<Runner> oExpected = Optional.of(this.winner);
+        assertEquals(oExpected, oWinner);
+        Mockito.verify(restTemplate).getForObject(winnerUrl, Runner.class);
     }
 
     @Test
     void post() {
-        Runner testRunner = new Runner("testRunner", Duration.ofSeconds(1));
-        marathonClient.post(testRunner);
-        Mockito.verify(restTemplate).postForObject(url, testRunner, Runner.class);
+        when(restTemplate.postForObject(runnersUrl, winner, Runner.class))
+                .thenReturn(winner);
+
+        Runner response = marathonClient.post(winner);
+
+        assertEquals(winner, response);
+        Mockito.verify(restTemplate).postForObject(runnersUrl, winner, Runner.class);
     }
 }

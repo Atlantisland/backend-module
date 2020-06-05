@@ -9,6 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PoloEndpointTest {
@@ -20,11 +21,16 @@ class PoloEndpointTest {
     Polo polo;
 
     String url = "/polo";
-    String message = "test";
 
     @Test
     void post(){
-        restTemplate.postForObject(url + "/" + message, message, String.class);
+        String message = "message";
+        String expected = "answer";
+        when(polo.giveResponse(message))
+                .thenReturn(expected);
+        String response = restTemplate.postForObject(url, message, String.class);
+
+        assertEquals(expected, response);
         Mockito.verify(polo).giveResponse(message);
     }
 }

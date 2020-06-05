@@ -7,18 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/marathon")
+@RequestMapping("/marathon/integration")
 public class MarathonIntegrationEndpoint {
 
     private final MarathonTester marathonTester;
-
 
     public MarathonIntegrationEndpoint(MarathonTester marathonTester) {
         this.marathonTester = marathonTester;
     }
 
-    @GetMapping("/integration")
-    TestResult get() {
-        return marathonTester.performIntegrationTest();
+    @GetMapping
+    TestResult get() { return marathonTester.performIntegrationTest();
     }
 }

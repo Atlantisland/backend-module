@@ -1,24 +1,29 @@
 package academy.everyonecodes.home.communication;
 
+import academy.everyonecodes.home.logic.Home;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class HomeEndpointTest {
+
     @Autowired
-    TestRestTemplate restTemplate;
-    @Value("home")
-    String nameHome;
+    TestRestTemplate testRestTemplate;
+
+    @MockBean
+    Home home;
+
+    String url = "/home";
 
     @Test
     void get() {
-        String url = "/home";
-        String result = restTemplate.getForObject(url, String.class);
-        assertEquals(nameHome, result);
+        testRestTemplate.getForObject(url, String.class);
+
+        verify(home).getMessage();
     }
 }

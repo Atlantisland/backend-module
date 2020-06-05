@@ -1,5 +1,23 @@
 server:
   port: 8501
+
 marathon:
-  webapp:
-    url: http://localhost:8500/runners
+    url: http://localhost:8500
+    runners:
+      url: ${marathon.url}/runners
+    winner:
+      url: ${marathon.url}/runners/winner
+
+integration:
+  winner:
+    name: Peter
+    duration: PT2H0M0S
+  runners:
+    - name: Peter
+      duration: PT2H0M0S
+    - name: Marcus
+      duration: PT2H3M0S
+    - name: Lucas
+      duration: PT2H4M0S
+    - name: Thomas
+      duration: PT2H5M0S

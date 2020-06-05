@@ -9,6 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ComplexFormulaEndpointTest {
@@ -19,11 +20,17 @@ class ComplexFormulaEndpointTest {
     @MockBean
     ComplexFormula complexFormula;
 
+    String url = "/complexformula";
+
     @Test
     void get() {
-        String url = "/complexformula";
-        int number = 1;
-        restTemplate.getForObject(url + "/" + number, Integer.class);
-        Mockito.verify(complexFormula).apply(1);
+        int number = 1234;
+        int expected = 4321;
+        when(complexFormula.apply(number))
+                .thenReturn(expected);
+        int response = restTemplate.getForObject(url + "/" + number, Integer.class);
+
+        assertEquals(expected, response);
+        Mockito.verify(complexFormula).apply(number);
     }
 }

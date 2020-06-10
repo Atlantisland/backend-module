@@ -1,4 +1,4 @@
-package academy.everyonecodes.runner.endpoint;
+package academy.everyonecodes.communication.endpoint;
 
 import academy.everyonecodes.domain.Movie;
 import academy.everyonecodes.logic.RecommendationService;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/recommendations")
@@ -20,7 +20,7 @@ public class RecommendationEndpoint {
     }
 
     @GetMapping("/{userUuid}")
-    Set<Movie> get(@PathVariable String userUuid){
+    List<Movie> get(@PathVariable String userUuid){
         return service.getMovieByUuid(userUuid);
     }
 }

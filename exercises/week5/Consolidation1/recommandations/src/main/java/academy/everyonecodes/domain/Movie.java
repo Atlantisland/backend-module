@@ -7,7 +7,7 @@ public class Movie {
     private String title;
     private String synopsis;
 
-    public Movie() {
+    Movie() {
     }
 
     public Movie(String title, String synopsis) {
@@ -19,7 +19,7 @@ public class Movie {
         return title;
     }
 
-    void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -27,7 +27,7 @@ public class Movie {
         return synopsis;
     }
 
-    void setSynopsis(String synopsis) {
+    public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
 

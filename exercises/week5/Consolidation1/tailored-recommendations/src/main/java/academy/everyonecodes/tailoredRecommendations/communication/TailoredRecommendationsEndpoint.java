@@ -5,7 +5,7 @@ import academy.everyonecodes.tailoredRecommendations.domain.TailoredRecommendati
 import academy.everyonecodes.tailoredRecommendations.logic.TailoredRecommendationsStore;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/tailoredrecommendations")
@@ -17,14 +17,14 @@ public class TailoredRecommendationsEndpoint {
         this.tailoredRecommendationsStore = tailoredRecommendationsStore;
     }
 
-
     @GetMapping("/{userUuid}")
-    Set<Movie> get (@PathVariable String userUuid) {
+    List<Movie> get (@PathVariable String userUuid) {
         return tailoredRecommendationsStore.getMovie(userUuid);
     }
 
     @PostMapping
     TailoredRecommendation post(@RequestBody TailoredRecommendation tailoredRecommendation) {
-        return tailoredRecommendationsStore.post(tailoredRecommendation);
+        tailoredRecommendationsStore.post(tailoredRecommendation);
+        return tailoredRecommendation;
     }
 }

@@ -7,7 +7,7 @@ public class Movie {
     private String title;
     private String synopsis;
 
-    public Movie() {
+    Movie() {
     }
 
     public Movie(String title, String synopsis) {

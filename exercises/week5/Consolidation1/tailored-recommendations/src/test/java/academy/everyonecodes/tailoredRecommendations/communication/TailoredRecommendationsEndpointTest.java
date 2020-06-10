@@ -28,7 +28,7 @@ class TailoredRecommendationsEndpointTest {
     String userUuid = "userUuid";
 
     @Test
-    void getMapping() {
+    void get() {
         restTemplate.getForObject( url +"/" + userUuid, Movie[].class);
         Mockito.verify(tailoredRecommendationsStore).getMovie(userUuid);
     }

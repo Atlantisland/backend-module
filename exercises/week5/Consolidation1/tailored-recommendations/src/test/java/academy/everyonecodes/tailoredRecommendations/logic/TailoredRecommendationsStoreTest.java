@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,17 +24,17 @@ class TailoredRecommendationsStoreTest {
 
     @ParameterizedTest
     @MethodSource("parameters")
-    void getMovie(Set<TailoredRecommendation> expected, String uuid){
-        Set<Movie> result = tailoredRecommendationsStore.getMovie(uuid);
+    void getMovie(List<TailoredRecommendation> expected, String uuid){
+        List<Movie> result = tailoredRecommendationsStore.getMovie(uuid);
 
         Assertions.assertEquals(expected, result);
     }
 
     static Stream<Arguments> parameters(){
         return Stream.of(
-                Arguments.of(Set.of(new Movie("title1", "synopsis1")), "123abc"),
-                Arguments.of(Set.of(new Movie("title2", "synopsis2")), "321cba"),
-                Arguments.of(Set.of(), "")
+                Arguments.of(List.of(new Movie("title1", "synopsis1")), "123abc"),
+                Arguments.of(List.of(new Movie("title2", "synopsis2")), "321cba"),
+                Arguments.of(List.of(), "")
         );
     }
 
@@ -45,8 +45,8 @@ class TailoredRecommendationsStoreTest {
         TailoredRecommendation tailoredRecommendation = new TailoredRecommendation("123abc", new Movie("title3", "synopsis3"));
         tailoredRecommendationsStore.post(tailoredRecommendation);
 
-        Set<TailoredRecommendation> result = tailoredRecommendationsStore.getTailoredRecommendations();
-        Set<TailoredRecommendation> expected = Set.of(
+        List<TailoredRecommendation> result = tailoredRecommendationsStore.getTailoredRecommendations();
+        List<TailoredRecommendation> expected = List.of(
                 new TailoredRecommendation("123abc", new Movie("title1", "synopsis1")),
                 new TailoredRecommendation("321cba", new Movie("title2", "synopsis2")),
                 new TailoredRecommendation("123abc", new Movie("title3", "synopsis3"))
@@ -56,12 +56,11 @@ class TailoredRecommendationsStoreTest {
 
     @Test
     void getTailoredRecommendations() {
-        Set<TailoredRecommendation> result = tailoredRecommendationsStore.getTailoredRecommendations();
-        Set<TailoredRecommendation> expected = Set.of(
+        List<TailoredRecommendation> result = tailoredRecommendationsStore.getTailoredRecommendations();
+        List<TailoredRecommendation> expected = List.of(
                 new TailoredRecommendation("123abc", new Movie("title1", "synopsis1")),
                 new TailoredRecommendation("321cba", new Movie("title2", "synopsis2"))
         );
-
         Assertions.assertEquals(expected, result);
     }
 }

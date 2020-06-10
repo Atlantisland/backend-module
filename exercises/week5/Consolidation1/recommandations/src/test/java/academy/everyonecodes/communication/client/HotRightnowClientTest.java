@@ -1,4 +1,4 @@
-package academy.everyonecodes.runner.client;
+package academy.everyonecodes.communication.client;
 
 import academy.everyonecodes.domain.Movie;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -31,8 +30,10 @@ class HotRightnowClientTest {
 
     @Test
     void getMovies() {
-        when(restTemplate.getForObject(hotUrl, HashSet.class)).thenReturn(new HashSet(Set.of(movie)));
-        hotRightnowClient.getMovies();
+        when(restTemplate.getForObject(hotUrl, Movie[].class)).thenReturn(new Movie[]{});
+
+        String userUuid = "uuid";
+        hotRightnowClient.getRecommendations(userUuid);
         verify(restTemplate).getForObject(hotUrl, HashSet.class);
     }
 }

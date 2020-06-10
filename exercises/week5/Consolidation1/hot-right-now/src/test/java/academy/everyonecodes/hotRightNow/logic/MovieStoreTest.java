@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Set;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,8 +18,10 @@ class MovieStoreTest {
 
     @Test
     void getMovie() {
-        Set<Movie> result = movieStore.getMovies();
-        Set<Movie> expected = Set.of(new Movie("title1", "synopsis1"), new Movie("title2", "synopsis2"));
-        Assertions.assertEquals(expected, result);
+        List<Movie> result = movieStore.getMovies();
+
+        assertEquals(1, result.size());
+        Movie expected = new Movie("title1", "synopsis1");
+        Assertions.assertEquals(expected, result.get(0));
     }
 }

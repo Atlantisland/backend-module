@@ -7,7 +7,7 @@ public class TailoredRecommendation {
     private String userUuid;
     private Movie movie;
 
-    public TailoredRecommendation() {
+    TailoredRecommendation() {
     }
 
     public TailoredRecommendation(String userUuid, Movie movie) {

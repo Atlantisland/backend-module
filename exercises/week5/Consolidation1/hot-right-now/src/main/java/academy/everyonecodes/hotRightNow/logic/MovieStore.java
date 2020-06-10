@@ -4,19 +4,19 @@ import academy.everyonecodes.hotRightNow.domain.Movie;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 @ConfigurationProperties("hotrightnow")
 public class MovieStore {
 
-    private Set<Movie> movies;
+    private List<Movie> movies;
 
-    void setMovies(Set<Movie> movies) {
+    void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
 
-    public Set<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
 }

@@ -1,14 +1,15 @@
 package academy.everyonecodes.logic;
 
-import academy.everyonecodes.runner.client.HotRightnowClient;
-import academy.everyonecodes.runner.client.TailoredRecommendationsClient;
+import academy.everyonecodes.communication.client.HotRightnowClient;
+import academy.everyonecodes.communication.client.TailoredRecommendationsClient;
 import academy.everyonecodes.domain.Movie;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class RecommendationService {
+
     private final TailoredRecommendationsClient tailoredRecommendationsClient;
     private final HotRightnowClient hotRightNowClient;
 
@@ -17,8 +18,8 @@ public class RecommendationService {
         this.hotRightNowClient = hotRightNowClient;
     }
 
-    public Set<Movie> getMovieByUuid(String uuid) {
-        Set<Movie> tailoredMovies = tailoredRecommendationsClient.getTailoredRecommendations(uuid);
-        return tailoredMovies.size() > 0 ? tailoredMovies : hotRightNowClient.getMovies();
+    public List<Movie> getMovieByUuid(String uuid) {
+        List<Movie> tailoredMovies = tailoredRecommendationsClient.getTailoredRecommendations(uuid);
+        return tailoredMovies.size() > 0 ? tailoredMovies : hotRightNowClient.getRecommendations(uuid);
     }
 }

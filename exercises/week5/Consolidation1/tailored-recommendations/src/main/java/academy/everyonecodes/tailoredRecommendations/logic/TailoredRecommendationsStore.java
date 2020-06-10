@@ -5,34 +5,31 @@ import academy.everyonecodes.tailoredRecommendations.domain.TailoredRecommendati
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @ConfigurationProperties("recommendation")
 public class TailoredRecommendationsStore {
 
-    private Set<TailoredRecommendation> tailoredRecommendations;
+    private List<TailoredRecommendation> tailoredRecommendations;
 
-
-    void setTailoredRecommendations(Set<TailoredRecommendation> tailoredRecommendations) {
+    void setTailoredRecommendations(List<TailoredRecommendation> tailoredRecommendations) {
         this.tailoredRecommendations = tailoredRecommendations;
-
     }
 
-    Set<TailoredRecommendation> getTailoredRecommendations() {
+    List<TailoredRecommendation> getTailoredRecommendations() {
         return tailoredRecommendations;
     }
 
-    public TailoredRecommendation post(TailoredRecommendation recommendation) {
+    public void post(TailoredRecommendation recommendation) {
         tailoredRecommendations.add(recommendation);
-        return recommendation;
     }
 
-    public Set<Movie> getMovie(String uuid) {
+    public List<Movie> getMovie(String uuid) {
         return tailoredRecommendations.stream()
                 .filter(recommendation -> recommendation.getUserUuid().equals(uuid))
                 .map(recommendation -> recommendation.getMovie())
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

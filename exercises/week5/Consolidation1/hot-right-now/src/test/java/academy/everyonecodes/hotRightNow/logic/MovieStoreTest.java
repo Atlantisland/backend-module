@@ -20,7 +20,7 @@ class MovieStoreTest {
     void getMovie() {
         List<Movie> result = movieStore.getMovies();
 
-        assertEquals(1, result.size());
+        assertEquals(2, result.size());
         Movie expected = new Movie("title1", "synopsis1");
         Assertions.assertEquals(expected, result.get(0));
     }

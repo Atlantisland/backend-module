@@ -40,14 +40,34 @@ class TweetsEndpointTest {
     @Test
     void getTest() {
         String user = "user";
-        restTemplate.getForObject(url + "/" + user, Tweet.class);
+        restTemplate.getForObject(url + "/user/" + user, Tweet[].class);
         verify(service).findAllByUserByTimestamp(user);
     }
 
     @Test
     void postTest() {
-        Tweet test = new Tweet("user", "text", 1, List.of("comment", "comment"), LocalDateTime.now());
+        Tweet test = new Tweet("user", "text");
         restTemplate.postForObject(url, test, Tweet.class);
         verify(service).post(test);
     }
+
+    @Test
+    void like() {
+        String id = "id";
+
+        restTemplate.put(url + "/" + id + "/likes", null);
+
+        verify(service).like(id);
+    }
+
+    @Test
+    void comment() {
+        String id = "id";
+        String comment = "comment";
+
+        restTemplate.put(url + "/" + id + "/comments", comment);
+
+        verify(service).comment(id, comment);
+    }
+
 }

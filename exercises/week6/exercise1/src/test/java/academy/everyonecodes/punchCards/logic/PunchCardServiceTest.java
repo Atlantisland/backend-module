@@ -1,31 +1,32 @@
 package academy.everyonecodes.punchCards.logic;
 
-import academy.everyonecodes.punchCards.configuration.PunchCardRunner;
 import academy.everyonecodes.punchCards.domain.PunchCard;
 import academy.everyonecodes.punchCards.repository.PunchCardRepository;
+import academy.everyonecodes.punchCards.configuration.PunchCardRunner;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class PunchCardServiceTest {
 
     @Autowired
-    PunchCardService service;
+    PunchCardService punchCardService;
 
     @MockBean
-    PunchCardRepository repository;
+    PunchCardRepository punchCardRepository;
 
     @MockBean
-    PunchCardRunner runner;
+    PunchCardRunner punchCardRunner;
 
     @Test
     void punch(){
-       service.punch();
+        punchCardService.punch();
 
-       Mockito.verify(repository).save(any(PunchCard.class));
+        verify(punchCardRepository).save(any(PunchCard.class));
     }
 }

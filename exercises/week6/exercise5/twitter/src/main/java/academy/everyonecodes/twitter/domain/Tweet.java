@@ -21,6 +21,17 @@ public class Tweet {
         this.timestamp = timestamp;
     }
 
+    public Tweet(String user, String text) {
+        this.user = user;
+        this.text = text;
+    }
+
+    public Tweet(String user, String text, List<String> comments) {
+        this.user = user;
+        this.text = text;
+        this.comments = comments;
+    }
+
     Tweet() {
     }
 

@@ -26,22 +26,24 @@ public class ToDoManager {
         return todos;
     }
 
-    public Optional<ToDo> findById(String id) {
+    public Optional<ToDo> findOne(String id) {
+
         return repository.findById(id);
     }
 
-    public Optional<ToDo> beDone(String id) {
-        Optional<ToDo> oToDo = findById(id);
+    public Optional<ToDo> markAsDone(String id) {
+        Optional<ToDo> oToDo = repository.findById(id);
         if(oToDo.isEmpty()){
-            return oToDo;
+            return Optional.empty();
         }
         ToDo toDo = oToDo.get();
         toDo.setDone(true);
         repository.save(toDo);
-        return oToDo;
+        return Optional.of(toDo);
     }
 
-    public void deleteItemById(String id) {
+    public void delete(String id) {
+
         repository.deleteById(id);
     }
 }

@@ -17,14 +17,11 @@ public class PunchCardService {
     }
 
     public void punch() {
-        PunchCard card = create();
-        punchCardRepository.save(card);
-        System.out.println("Item saved: " + card);
-    }
-
-    private PunchCard create() {
-        String dayOfWeek = LocalDateTime.now().toString();
-        String timeOfDay = LocalDateTime.now().format(DateTimeFormatter.ISO_TIME);
-        return new PunchCard(dayOfWeek, timeOfDay);
+        LocalDateTime now = LocalDateTime.now();
+        String dayOfWeek = now.getDayOfWeek().toString();
+        String timeOfDay = now.format(DateTimeFormatter.ISO_TIME);
+        PunchCard punchCard = new PunchCard(dayOfWeek, timeOfDay);
+        punchCardRepository.save(punchCard);
+        System.out.println("Item saved: " + punchCard);
     }
 }

@@ -1,4 +1,4 @@
-package academy.everyonecodes.runner;
+package academy.everyonecodes.communication;
 
 import academy.everyonecodes.service.CountdownManager;
 import org.springframework.boot.ApplicationRunner;

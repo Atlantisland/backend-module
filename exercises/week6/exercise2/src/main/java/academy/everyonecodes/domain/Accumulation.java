@@ -23,6 +23,10 @@ public class Accumulation {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public int getTimes() {
         return times;
     }

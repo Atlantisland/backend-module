@@ -8,9 +8,8 @@ public class ToDo {
     private String title;
     private boolean done;
 
-    public ToDo(String title, boolean done) {
+    public ToDo(String title) {
         this.title = title;
-        this.done = done;
     }
 
     ToDo() {

@@ -23,7 +23,7 @@ public class ToDosEndpoint {
 
     @GetMapping("/{id}")
     ToDo get(@PathVariable String id) {
-        return manager.findById(id).orElse(null);
+        return manager.findOne(id).orElse(null);
     }
 
     @PostMapping
@@ -33,13 +33,11 @@ public class ToDosEndpoint {
 
     @PutMapping("/{id}/done")
     ToDo put(@PathVariable String id) {
-        ToDo beDone = get(id);
-        manager.beDone(id);
-        return manager.save(beDone);
+        return manager.markAsDone(id).orElse(null);
     }
 
     @DeleteMapping("/{id}")
     void delete(@PathVariable String id) {
-        manager.deleteItemById(id);
+        manager.delete(id);
     }
 }

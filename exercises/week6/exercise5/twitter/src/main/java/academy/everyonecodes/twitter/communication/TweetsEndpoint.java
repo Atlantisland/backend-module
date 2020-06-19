@@ -29,7 +29,6 @@ public class TweetsEndpoint {
 
     @PostMapping
     Tweet post(@RequestBody Tweet tweet) {
-
         return service.post(tweet);
     }
 

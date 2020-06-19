@@ -9,10 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
@@ -38,33 +34,32 @@ class ToDosEndpointTest {
     }
 
     @Test
-    void getTest() {
+    void getOne() {
         String id = "id";
         restTemplate.getForObject(url + "/" + id, ToDo.class);
-        verify(manager).findById(id);
+        verify(manager).findOne(id);
     }
 
     @Test
-    void postTest() {
-        ToDo test = new ToDo("toCook", true);
+    void post() {
+        ToDo test = new ToDo("toCook");
         restTemplate.postForObject(url, test, ToDo.class);
         verify(manager).save(test);
     }
 
     @Test
-    void putTest() {
+    void put() {
         String id = "id";
-        String done = "done";
-        Optional<ToDo> test = manager.beDone(id);
-        restTemplate.put(url + "/" + id + done, test);
-        verify(manager).beDone(anyString());
+        String done = "/done";
+        restTemplate.put(url + "/" + id + done, null);
+        verify(manager).markAsDone(id);
     }
 
     @Test
     void delete() {
         String id = "id";
         restTemplate.delete(url + "/" + id);
-        verify(manager).deleteItemById(anyString());
+        verify(manager).delete(id);
     }
 }
 

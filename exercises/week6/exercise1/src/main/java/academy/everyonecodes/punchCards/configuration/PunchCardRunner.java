@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class PunchCardRunner {
 
     @Bean
-    ApplicationRunner runPunchCard(PunchCardService punchCardService) {
+    ApplicationRunner runner(PunchCardService punchCardService) {
         return args -> punchCardService.punch();
     }
 }

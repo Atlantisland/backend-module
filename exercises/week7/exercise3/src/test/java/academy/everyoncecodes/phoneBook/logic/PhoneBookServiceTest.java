@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class PhoneBookServiceTest {
 
     @Autowired
-    PhoneBookService service;
+    PhoneBookService phoneBookService;
 
     @MockBean
     ContactRepository contactRepository;
@@ -25,23 +24,28 @@ class PhoneBookServiceTest {
     AddressRepository addressRepository;
 
     @Test
+    void findAll(){
+        phoneBookService.findAll();
+
+        verify(contactRepository).findAll();
+    }
+
+    @Test
     void save(){
-        Contact contact = new Contact("name", new Address("street", "postalCode"));
-        service.save(contact);
+        Contact contact = new Contact("name", new Address("street", "1234"));
+
+        phoneBookService.save(contact);
+
         verify(addressRepository).save(contact.getAddress());
         verify(contactRepository).save(contact);
     }
 
     @Test
-    void findAll(){
-        service.findAll();
-        verify(contactRepository).findAll();
-    }
-
-    @Test
     void findByAddressPostalCode(){
         String postalCode = "postalCode";
-        service.findByAddressPostalCode(postalCode);
-        verify(contactRepository).findContactByAddressPostalCode(postalCode);
+
+        phoneBookService.findByAddressPostalCode(postalCode);
+
+        verify(contactRepository).findByAddressPostalCode(postalCode);
     }
 }

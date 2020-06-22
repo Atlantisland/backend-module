@@ -28,12 +28,12 @@ public class PersonEndpoint {
     }
 
     @PutMapping("/{id1}/friend/{id2}")
-        void connect(@PathVariable long id1, @PathVariable long id2){
+        void connect(@PathVariable Long id1, @PathVariable Long id2){
             service.connectById(id1, id2);
         }
 
     @PutMapping("/{id1}/unfriend/{id2}")
-        void disconnect(@PathVariable long id1, @PathVariable long id2){
+        void disconnect(@PathVariable Long id1, @PathVariable Long id2){
             service.disconnectById(id1, id2);
         }
 }

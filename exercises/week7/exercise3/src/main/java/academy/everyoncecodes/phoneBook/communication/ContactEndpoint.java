@@ -11,24 +11,24 @@ import java.util.List;
 @RequestMapping("/contacts")
 public class ContactEndpoint {
 
-    private final PhoneBookService service;
+    private final PhoneBookService phoneBookService;
 
-    public ContactEndpoint(PhoneBookService service) {
-        this.service = service;
-    }
-
-    @PostMapping
-    Contact save(@Valid @RequestBody Contact contact){
-        return service.save(contact);
+    public ContactEndpoint(PhoneBookService phoneBookService) {
+        this.phoneBookService = phoneBookService;
     }
 
     @GetMapping
-    List<Contact> findAll(){
-        return service.findAll();
+    List<Contact> get(){
+        return phoneBookService.findAll();
     }
 
-    @GetMapping("/postalCodes/{postalCode}")
-    List<Contact> findContactsByPostalCode(@PathVariable String postalCode){
-        return service.findByAddressPostalCode(postalCode);
+    @PostMapping
+    Contact post(@Valid @RequestBody Contact contact){
+        return phoneBookService.save(contact);
+    }
+
+    @GetMapping("/postalcodes/{postalCode}")
+    List<Contact> get(@PathVariable String postalCode){
+        return phoneBookService.findByAddressPostalCode(postalCode);
     }
 }

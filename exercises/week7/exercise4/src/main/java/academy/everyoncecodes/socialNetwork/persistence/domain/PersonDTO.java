@@ -17,7 +17,7 @@ public class PersonDTO {
     public PersonDTO() {
     }
 
-    public PersonDTO(String name) {
+    public PersonDTO(@NotEmpty String name) {
         this.name = name;
     }
 

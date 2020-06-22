@@ -24,8 +24,11 @@ class ContactEndpointTest {
 
     @Test
     void save(){
-        Contact contact = new Contact("name", new Address("street", "postalCode"));
+        Address address = new Address("street", "1234");
+        Contact contact = new Contact("name", address);
+
         testRestTemplate.postForObject(url, contact, Contact.class);
+
         verify(service).save(contact);
     }
 
@@ -37,9 +40,11 @@ class ContactEndpointTest {
 
     @Test
     void findContactsByPostalCode(){
-        String postalCodeUrl = url + "/postalCodes/postalCode";
-        String postalCode = "postalCode";
+        String postalCode = "1234";
+        String postalCodeUrl = url + "/postalcodes/" + postalCode;
+
         testRestTemplate.getForObject(postalCodeUrl, Contact[].class);
+
         verify(service).findByAddressPostalCode(postalCode);
     }
 }

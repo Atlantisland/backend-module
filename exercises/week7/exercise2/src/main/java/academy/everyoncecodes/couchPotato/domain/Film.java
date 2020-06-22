@@ -23,7 +23,6 @@ public class Film {
     private int rating;
 
     public Film(){
-
     }
 
     public Film(String name, int rating) {

@@ -10,12 +10,16 @@ import java.util.List;
 @Service
 public class PhoneBookService {
 
-    private final AddressRepository addressRepository;
     private final ContactRepository contactRepository;
+    private final AddressRepository addressRepository;
 
-    public PhoneBookService(AddressRepository addressRepository, ContactRepository contactRepository) {
-        this.addressRepository = addressRepository;
+    public PhoneBookService(ContactRepository contactRepository, AddressRepository addressRepository) {
         this.contactRepository = contactRepository;
+        this.addressRepository = addressRepository;
+    }
+
+    public List<Contact> findAll(){
+        return contactRepository.findAll();
     }
 
     public Contact save(Contact contact){
@@ -23,11 +27,7 @@ public class PhoneBookService {
         return contactRepository.save(contact);
     }
 
-    public List<Contact> findAll(){
-        return contactRepository.findAll();
-    }
-
     public List<Contact> findByAddressPostalCode(String postalCode){
-        return contactRepository.findContactByAddressPostalCode(postalCode);
+       return contactRepository.findByAddressPostalCode(postalCode);
     }
 }

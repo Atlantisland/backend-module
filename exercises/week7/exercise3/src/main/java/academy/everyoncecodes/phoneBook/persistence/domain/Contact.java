@@ -1,6 +1,9 @@
 package academy.everyoncecodes.phoneBook.persistence.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
@@ -19,7 +22,7 @@ public class Contact {
     @OneToOne
     private Address address;
 
-    public Contact(){
+    public Contact() {
     }
 
     public Contact(String name, Address address) {

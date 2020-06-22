@@ -26,6 +26,11 @@ public class Person {
         this.name = name;
     }
 
+    public Person(String name, List<Person> friends) {
+        this.name = name;
+        this.friends = friends;
+    }
+
     public Person(Long id, String name) {
         this.id = id;
         this.name = name;
@@ -33,11 +38,6 @@ public class Person {
 
     public Person(Long id, String name, List<Person> friends) {
         this.id = id;
-        this.name = name;
-        this.friends = friends;
-    }
-
-    public Person(String name, List<Person> friends) {
         this.name = name;
         this.friends = friends;
     }
@@ -69,7 +69,7 @@ public class Person {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Person)) return false;
         Person person = (Person) o;
         return Objects.equals(id, person.id) &&
                 Objects.equals(name, person.name);
@@ -78,5 +78,14 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, friends);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", friends=" + friends +
+                '}';
     }
 }

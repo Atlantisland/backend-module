@@ -1,0 +1,16 @@
+server:
+  port: 9200
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost/registrations
+
+courses:
+  courses-users:
+    - username: udemyadmin
+      password: udemyadmin
+      authorities: ROLE_ADMIN
+    - username: instructor
+      password: instructor
+      authorities: ROLE_APP
